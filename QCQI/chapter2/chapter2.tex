@@ -1,0 +1,2906 @@
+\documentclass[10pt]{book}
+
+% \documentclass[letterpaper, 10 pt, conference]{ieeeconf}
+% The preceding line is only needed to identify funding in the first footnote. If that is unneeded, please comment it out.
+% \overrideIEEEmargins                                      
+% Needed to meet printer requirements.
+%\usepackage{vmargin}
+\usepackage{geometry}
+\geometry{left=1.69cm,right=1.69cm,top=2.01cm,bottom=1.6cm} 
+% \usepackage{ciaite}
+\usepackage{amsmath,amssymb,amsfonts, amsthm, easyReview}
+\usepackage{graphicx}
+\usepackage{textcomp}
+\usepackage{multirow}
+\usepackage{xcolor}
+\usepackage{algorithm}  
+\usepackage{booktabs}
+\usepackage{algorithm,algpseudocode}
+\usepackage{soul,color}
+\usepackage{bm}
+\usepackage[all, warning]{onlyamsmath}
+\algnewcommand{\algorithmicforeach}{\textbf{for each}}
+\algdef{SE}[FOR]{ForEach}{EndForEach}[1]
+{\algorithmicforeach\ #1\ \algorithmicdo}% \ForEach{#1}
+{\algorithmicend\ \algorithmicforeach}% \EndForEach
+\usepackage{amsmath}
+\usepackage{threeparttable}
+\usepackage{subfigure}
+%\usepackage[colorlinks,linkcolor=blue]{hyperref}%
+\usepackage{url}
+%\setpapersize{USletter}
+\renewcommand{\algorithmicrequire}{\textbf{Input:}}  % Use Input in the format of Algorithm  
+\renewcommand{\algorithmicensure}{\textbf{Output:}} % Use Output in the format of Algorithm  
+\newtheorem{df}{\bf Definition}[section]
+\newtheorem{as}{\bf Assumption}[section]
+\newtheorem{theorem}{\bf Theorem}[section]
+\newtheorem{lm}{\bf Lemma}[section]
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{algorithm,algpseudocode}
+\usepackage{hyperref}
+\usepackage{braket}
+\usepackage{dsfont}
+\usepackage{ulem}
+\usepackage{cases}
+\makeatletter
+\newcommand{\algmargin}{\the\ALG@thistlm}
+\usepackage{soul}
+\soulregister\cite7 
+\soulregister\citep7 
+\soulregister\citet7 
+\soulregister\ref7 
+\soulregister\pageref7 
+\makeatother
+\newlength{\whilewidth}
+\settowidth{\whilewidth}{\algorithmicwhile\ }
+\algdef{SE}[parWHILE]{parWhile}{EndparWhile}[1]
+{\parbox[t]{\dimexpr\linewidth-\algmargin}{%
+		\hangindent\whilewidth\strut\algorithmicwhile\ #1\ \algorithmicdo\strut}}{\algorithmicend\ \algorithmicwhile}%
+\algnewcommand{\parState}[1]{\State%
+	\parbox[t]{\dimexpr\linewidth-\algmargin}{\strut #1\strut}}
+
+\DeclareMathOperator{\Tr}{Tr}
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert} % norm ||x||
+\newcommand{\kb}[1]{\ket{#1}\hspace{-1mm} \bra{#1}} % |x><x|
+\newcommand{\kbt}[2]{\ket{#1}\hspace{-1mm} \bra{#2}} % |x><y|
+\newcommand{\Textbf}[1]{\hspace{3mm}\\ \textbf{#1}\\}
+\newtheorem{thm}{Theorem.}[section]
+\newtheorem{prop}{Proposition.}[section]
+
+
+\def\BibTeX{{\rm B\kern-.05em{\sc i\kern-.025em b}\kern-.08em
+		T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
+
+\title{\LARGE \bf
+	Sol of Quantum Computation and Quantum Information\\ Chapter2
+} 
+
+\begin{document}
+	\maketitle
+	\thispagestyle{empty}
+	\pagestyle{empty}
+	
+	\Textbf{2.1}
+	
+	\begin{equation}
+\begin{aligned}
+		\begin{bmatrix}
+			1 \\
+			-1
+		\end{bmatrix}
+		+
+		\begin{bmatrix}
+			1 \\
+			2
+		\end{bmatrix}
+		-
+		\begin{bmatrix}
+			2 \\
+			1
+		\end{bmatrix}
+		=
+		\begin{bmatrix}
+			0 \\
+			0
+		\end{bmatrix}
+	\end{aligned}
+\end{equation}
+	
+	\Textbf{2.2}
+	
+	\begin{equation}
+\begin{aligned}
+		A\ket{0} &= A_{11}\ket{0} + A_{21}\ket{1} = \ket{1} \Rightarrow A_{11} = 0,\ A_{21} = 1\\
+		A\ket{1} &= A_{12}\ket{0} + A_{22}\ket{1} = \ket{0} \Rightarrow A_{12} = 1,\ A_{22} = 0\\
+		%
+		\therefore A &=
+		\begin{bmatrix}
+			0 & 1 \\
+			1 & 0
+		\end{bmatrix}
+	\end{aligned}
+\end{equation}\\
+	
+	input: $\left\{\ket{0}, \ket{1}\right\}$,
+	output: $\left\{\ket{1}, \ket{0}\right\}$
+	
+	\begin{equation}
+\begin{aligned}
+		A\ket{0}&= A_{11}\ket{1} + A_{21}\ket{0} = \ket{1} \Rightarrow A_{11} = 1,\ A_{21} = 0\\
+		%
+		A\ket{1} &= A_{12}\ket{1} + A_{22}\ket{0} = \ket{0} \Rightarrow A_{12} = 0,\ A_{22} = 1\\
+		%
+		A &=
+		\begin{bmatrix}
+			1 & 0 \\
+			0 & 1
+		\end{bmatrix}
+	\end{aligned}
+\end{equation}
+	
+	
+	\Textbf{2.3}
+	
+	From eq (2.12)
+	\begin{equation}
+\begin{aligned}
+		A \ket{v_i} &= \sum_{j} A_{ji}\ket{w_j}\\
+		B \ket{w_j} &= \sum_{k} B_{kj}\ket{x_k}
+	\end{aligned}
+\end{equation}
+	%
+	Thus
+	\begin{equation}
+\begin{aligned}
+		BA \ket{v_i} &= B \left( \sum_{j} A_{ji}\ket{w_j} \right)\\
+		&= \sum_{j} A_{ji} B\ket{w_j}\\
+		&= \sum_{j,k} A_{ji} B_{kj}\ket{x_k}\\
+		&= \sum_k \left( \sum_j B_{kj} A_{ji}  \right) \ket{x_k}\\
+		&= \sum_k (BA)_{ki} \ket{x_k}\\
+		\therefore& (BA)_{ki} = \sum_j B_{kj} A_{ji}
+	\end{aligned}
+\end{equation}
+	
+	
+	
+	\Textbf{2.4}
+	\begin{equation}
+\begin{aligned}
+		I\ket{v_j} = \sum_i I_{ij} \ket{v_i} = \ket{v_j},\ \forall j.\\
+		\Rightarrow I_{ij} = \delta_{ij}
+	\end{aligned}
+\end{equation}
+	
+	
+	\Textbf{2.5}
+	
+	Defined inner product on $\mathcal{C}^n$ is
+	\begin{equation}
+\begin{aligned}
+		\left(
+		(y_1, \cdots, y_n), (z_1, \cdots, z_n)
+		\right)
+		= \sum_{i} y_i^* z_i .
+	\end{aligned}
+\end{equation}
+	Verify (1) of eq (2.13).
+	
+	\begin{equation}
+\begin{aligned}
+		\left(
+		(y_1, \cdots, y_n), \sum_i \lambda_i (z_{i1}, \cdots, z_{in})
+		\right)
+		&= \sum_i y_i^* \left(
+		\sum_j \lambda_j z_{ji}
+		\right)\\
+		&= \sum_{i,j} y_i^* \lambda_j z_{ji}\\
+		&= \sum_j \lambda_j \left(\sum_i y_i^* z_{ji}  \right)\\
+		&= \sum_j \lambda_j \left(
+		(y_1, \cdots, y_n),  (z_{j1}, \cdots, z_{jn})
+		\right)\\
+		&= \sum_i \lambda_i \left(
+		(y_1, \cdots, y_n),  (z_{i1}, \cdots, z_{in})
+		\right).
+	\end{aligned}
+\end{equation}
+	
+	
+	Verify (2) of eq (2.13),
+	\begin{equation}
+			\begin{aligned}
+			\left(
+			(y_1, \cdots, y_n), (z_1, \cdots, z_n)
+			\right)^*
+			&= \left(\sum_i y_i^* z_i \right)^*\\
+			&= \left(\sum_i y_i  z_i^* \right)\\
+			&= \left(\sum_i z_i^* y_i \right)\\
+			&= \left(
+			(z_1, \cdots, z_n) , (y_1, \cdots, y_n)
+			\right)
+		\end{aligned}
+	\end{equation}
+
+	
+	
+	Verify (3) of eq (2.13),
+	\begin{equation}
+\begin{aligned}
+		\left(
+		(y_1, \cdots, y_n), (y_1, \cdots, y_n)
+		\right)
+		&= \sum_i y_i^* y_i\\
+		&= \sum_i |y_i|^2
+	\end{aligned}
+\end{equation}
+	
+	Since $|y_i|^2 \geq 0$ for all $i$. Thus
+	$\sum_i |y_i|^2 =
+	\left(
+	(y_1, \cdots, y_n), (y_1, \cdots, y_n)
+	\right) \geq 0
+	$.
+	
+	From now on,  I will show the following statement,
+	\begin{equation}
+\begin{aligned}
+		\left(
+		(y_1, \cdots, y_n), (y_1, \cdots, y_n)
+		\right) = 0
+		\text{ iff }  (y_1, \cdots, y_n) = 0.
+	\end{aligned}
+\end{equation}
+	($\Leftarrow$) This is obvious.\\
+	($\Rightarrow$)
+	Suppose $\left( (y_1, \cdots, y_n), (y_1, \cdots, y_n) \right) = 0$. Then $\sum_i |y_i|^2 = 0$.
+	
+	Since $|y_i|^2 \geq 0$ for all $i$, if $\sum_i |y_i|^2 = 0$, then $|y_i|^2 = 0$ for all $i$.
+	Therefore $|y_i|^2 = 0 \Leftrightarrow y_i = 0$  for all $i$.
+	Thus,
+	\begin{equation}
+\begin{aligned}
+		(y_1, \cdots, y_n) = 0.
+	\end{aligned}
+\end{equation}
+	
+	\Textbf{2.6}
+	\begin{equation}
+\begin{aligned}
+		\left(\sum_i \lambda_i \ket{w_i},\ \ket{v}\right) &=
+		\left(\ket{v},\ \sum_i \lambda_i \ket{w_i}\right)^*\\
+		&= \left[\sum_i \lambda_i \left(\ket{v},\ \ket{w_i}  \right) \right]^* (\because \text{linearlity in the 2nd arg.})\\
+		&= \sum_i \lambda_i^* \left(\ket{v},\ \ket{w_i} \right)^*\\
+		&= \sum_i \lambda_i^* (\ket{w_i},\ \ket{v})
+	\end{aligned}
+\end{equation}
+	
+	
+	\Textbf{2.7}
+	
+	\begin{equation}
+\begin{aligned}
+		\braket{w | v} &= \begin{bmatrix}
+			1 & 1
+		\end{bmatrix}
+		\begin{bmatrix}
+			1 \\
+			-1
+		\end{bmatrix}
+		= 1 - 1 = 0\\
+		%
+		\frac{\ket{w}}{\norm{\ket{w}}} &=
+		\frac{\ket{w}}{\sqrt{\braket{w|w}}} = \frac{1}{\sqrt{2}} \begin{bmatrix}
+			1 \\
+			1
+		\end{bmatrix}\\
+		%
+		\frac{\ket{v}}{\norm{\ket{v}}} &=
+		\frac{\ket{v}}{\sqrt{\braket{v|v}}} = \frac{1}{\sqrt{2}} \begin{bmatrix}
+			1 \\
+			-1
+		\end{bmatrix}
+	\end{aligned}
+\end{equation}
+	
+	
+	
+	\Textbf{2.8}
+	
+	If $k = 1$,
+	\begin{equation}
+\begin{aligned}
+		\ket{v_2} &= \frac{\ket{w_2} - \braket{v_1 | w_2}\ket{v_1}}{\norm{\ket{w_2} - \braket{v_1 | w_2}\ket{v_1}}}\\
+		\braket{v_1 | v_2} &= \bra{v_1} \left(\frac{\ket{w_2} - \braket{v_1 | w_2}\ket{v_1}}{\norm{\ket{w_2} - \braket{v_1 | w_2}\ket{v_1}}}\right)\\
+		&= \frac{\braket{v_1 | w_2} - \braket{v_1 | w_2}\braket{v_1 | v_1}}{\norm{\ket{w_2} - \braket{v_1 | w_2}\ket{v_1}}}\\
+		&= 0.
+	\end{aligned}
+\end{equation}
+	
+	Suppose $\left\{v_1, \cdots v_n \right\}$ $(n \leq d-1)$ is a orthonormal basis. Then
+	\begin{equation}
+\begin{aligned}
+		\braket{v_j | v_{n+1}} &= \bra{v_j} \left(\frac{\ket{w_{n+1}} - \sum_{i=1}^{n}\braket{v_i | w_{n+1}}\ket{v_i}}{\norm{\ket{w_{n+1}} - \sum_{i=1}^{n}\braket{v_i | w_{n+1}}\ket{v_i}}}\right)~~(j \leq n)\\
+		&= \frac{\braket{v_j | w_{n+1}} - \sum_{i=1}^{n}\braket{v_i | w_{n+1}}\braket{v_j | v_i}}{\norm{\ket{w_{n+1}} - \sum_{i=1}^{n}\braket{v_i | w_{n+1}}\ket{v_i}}}\\
+		&= \frac{\braket{v_j | w_{n+1}} - \sum_{i=1}^{n}\braket{v_i | w_{n+1}}\delta_{ij}}{\norm{\ket{w_{n+1}} - \sum_{i=1}^{n}\braket{v_i | w_{n+1}}\ket{v_i}}}\\
+		&= \frac{\braket{v_j | w_{n+1}} - \braket{v_j | w_{n+1}}}{\norm{\ket{w_{n+1}} - \sum_{i=1}^{n}\braket{v_i | w_{n+1}}\ket{v_i}}}\\
+		&= 0.
+	\end{aligned}
+\end{equation}
+	Thus Gram-Schmidt procedure produces an orthonormal basis.
+	
+	
+	\Textbf{2.9}
+	\begin{equation}
+\begin{aligned}
+		\sigma_0 &= I = \ket{0}\bra{0} + \ket{1}\bra{1}\\
+		\sigma_1 &= X = \ket{0}\bra{1} + \ket{1}\bra{0}\\
+		\sigma_2 &= Y = -i\ket{0}\bra{1} + i\ket{1}\bra{0}\\
+		\sigma_3 &= Z = \ket{0}\bra{0} - \ket{1}\bra{1}
+	\end{aligned}
+\end{equation}
+	
+	
+	\Textbf{2.10}
+	\begin{equation}
+\begin{aligned}
+		\ket{v_j}\bra{v_k} &= I_V \ket{v_j} \bra{v_k} I_V\\
+		&= \left(\sum_p \ket{v_p}\bra{v_p} \right) \ket{v_j}\bra{v_k} \left(\sum_q \ket{v_q}\bra{v_q} \right)\\
+		&= \sum_{p,q} \ket{v_p} \braket{v_p|v_j}
+		\braket{v_k | v_q} \bra{v_q}\\
+		&= \sum_{p,q} \delta_{pj} \delta_{kq} \ket{v_p} \bra{v_q}
+	\end{aligned}
+\end{equation}
+	Thus
+	\begin{equation}
+\begin{aligned}
+		\left( \ket{v_j}\bra{v_k} \right)_{pq} = \delta_{pj} \delta_{kq}
+	\end{aligned}
+\end{equation}
+	
+	
+	
+	\Textbf{2.11}
+	\begin{equation}
+\begin{aligned}
+		X = \begin{bmatrix}
+			0 & 1 \\
+			1 & 0
+		\end{bmatrix},\ \det(X-\lambda I) =
+		\det \left(\begin{bmatrix}
+			-\lambda & 1 \\
+			1 & -\lambda
+		\end{bmatrix} \right) = 0 \Rightarrow \lambda = \pm 1
+	\end{aligned}
+\end{equation}
+	
+	If $\lambda = -1$,
+	\begin{equation}
+\begin{aligned}
+		\begin{bmatrix}
+			1 & 1 \\
+			1 & 1
+		\end{bmatrix}
+		\begin{bmatrix}
+			c_1 \\
+			c_2
+		\end{bmatrix} =
+		\begin{bmatrix}
+			0 \\
+			0
+		\end{bmatrix}
+	\end{aligned}
+\end{equation}
+	Thus
+	\begin{equation}
+\begin{aligned}
+		\ket{\lambda = -1} = \begin{bmatrix}
+			c_1 \\
+			c_2
+		\end{bmatrix} = \frac{1}{\sqrt{2}}
+		\begin{bmatrix}
+			-1 \\
+			1
+		\end{bmatrix}
+	\end{aligned}
+\end{equation}
+	
+	If $\lambda = 1$
+	\begin{equation}
+\begin{aligned}
+		\ket{\lambda = 1} = \frac{1}{\sqrt{2}}
+		\begin{bmatrix}
+			1 \\
+			1
+		\end{bmatrix}
+	\end{aligned}
+\end{equation}
+	
+	\begin{equation}
+\begin{aligned}
+		X = \begin{bmatrix}
+			-1 & 0 \\
+			0 & 1
+		\end{bmatrix}
+		\text{ w.r.t. } \left\{ \ket{\lambda = -1},\ \ket{\lambda = 1}\right\}
+	\end{aligned}
+\end{equation}
+	
+	
+	
+	\Textbf{2.12}
+	\begin{equation}
+\begin{aligned}
+		\det \left(\begin{bmatrix}
+			1 & 0 \\
+			1 & 1
+		\end{bmatrix} - \lambda I \right) = (1 - \lambda)^2 = 0 \Rightarrow \lambda = 1
+	\end{aligned}
+\end{equation}
+	Therefore the eigenvector associated with eigenvalue $\lambda = 1$ is
+	\begin{equation}
+\begin{aligned}
+		\ket{\lambda = 1} = \begin{bmatrix}
+			0 \\
+			1
+		\end{bmatrix}
+	\end{aligned}
+\end{equation}
+	
+	Because $\ket{\lambda = 1}\bra{\lambda = 1} = \begin{bmatrix}
+		0 & 0 \\
+		0 & 1
+	\end{bmatrix}$,
+	\begin{equation}
+\begin{aligned}
+		\begin{bmatrix}
+			1 & 0 \\
+			1 & 1
+		\end{bmatrix} \neq c\ket{\lambda = 1}\bra{\lambda = 1} = \begin{bmatrix}
+			0 & 0 \\
+			0 & c
+		\end{bmatrix}
+	\end{aligned}
+\end{equation}
+	
+	
+	
+	\Textbf{2.13}
+	
+	Suppose $\ket{\psi},\ \ket{\phi}$ are arbitrary vectors in $V$.
+	\begin{equation}
+\begin{aligned}
+		\left(\ket{\psi},\ (\ket{w}\bra{v}) \ket{\phi}\right)^* &=
+		\left((\ket{w}\bra{v})^\dagger \ket{\psi},\  \ket{\phi}\right)^*\\
+		&= \left(\ket{\phi},\ (\ket{w}\bra{v})^\dagger \ket{\psi} \right)\\
+		&= \bra{\phi} (\ket{w}\bra{v})^\dagger \ket{\psi}.
+	\end{aligned}
+\end{equation}
+	
+	On the other hand,
+	\begin{equation}
+\begin{aligned}
+		\left(\ket{\psi},\ (\ket{w}\bra{v}) \ket{\phi}\right)^*
+		&= (\braket{\psi | w} \braket{v | \phi})^*\\
+		&= \braket{\phi | v} \braket{w | \psi}.
+	\end{aligned}
+\end{equation}
+	
+	Thus
+	\begin{equation}
+\begin{aligned}
+		\bra{\phi} (\ket{w}\bra{v})^\dagger \ket{\psi} = \braket{\phi | v} \braket{w | \psi} \text{ for arbitrary vectors } \ket{\psi},\ \ket{\phi}\\
+		\therefore (\ket{w}\bra{v})^\dagger = \ket{v}\bra{w}
+	\end{aligned}
+\end{equation}
+	
+	
+	\Textbf{2.14}
+	\begin{equation}
+\begin{aligned}
+		( (a_i A_i)^\dagger \ket{\phi},\ \ket{\psi} )
+		&= (\ket{\phi},\ a_i A_i \ket{\psi})\\
+		&= a_i (\ket{\phi},\ A_i \ket{\psi})\\
+		&= a_i (A_i^\dagger \ket{\phi},\ \ket{\psi})\\
+		&= (a_i^* A_i^\dagger \ket{\phi},\ \ket{\psi})\\
+		%
+		\therefore (a_i A_i)^\dagger = a_i^* A_i^\dagger
+	\end{aligned}
+\end{equation}
+	
+	
+	
+	
+	\Textbf{2.15}
+	\begin{equation}
+\begin{aligned}
+		((A^\dagger)^\dagger\ket{\psi},\ \ket{\phi} )
+		&= (\ket{\psi},\ A^\dagger \ket{\phi})\\
+		&= (A^\dagger \ket{\phi},\ \ket{\psi})^*\\
+		&= (\ket{\phi},\ A\ket{\psi})^*\\
+		&= (A\ket{\psi},\ \ket{\phi})\\
+		\therefore (A^\dagger)^\dagger = A
+	\end{aligned}
+\end{equation}
+	
+	
+	\Textbf{2.16}
+	\begin{equation}
+\begin{aligned}
+		P &= \sum_i \ket{i}\bra{i}.\\
+		P^2 &= \left(\sum_i \ket{i}\bra{i}\right) \left(\sum_j \ket{j}\bra{j}\right)\\
+		&= \sum_{i,j} \ket{i}\braket{i | j}\bra{j}\\
+		&= \sum_{i,j} \ket{i}\bra{j} \delta_{ij}\\
+		&= \sum_i \ket{i}\bra{i}\\
+		&= P
+	\end{aligned}
+\end{equation}
+	
+	
+	\Textbf{2.17}
+	\begin{proof}
+		($\Rightarrow$) Suppose $A$ is Hermitian. Then $A=A^\dagger$.
+		Let $\ket{\lambda}$ be eigenvectors of $A$ with eigenvalues $\lambda$, that is,
+		\begin{equation}
+\begin{aligned}
+			A \ket{\label{text}} = \lambda \ket{\lambda}.
+		\end{aligned}
+\end{equation}
+		Therefore
+		\begin{equation}
+\begin{aligned}
+			\braket{\lambda | A | \lambda} = \lambda \braket{\lambda | \lambda} = \lambda.
+		\end{aligned}
+\end{equation}
+		On the other hand,
+		\begin{equation}
+\begin{aligned}
+			\lambda^*  = \braket{\lambda | A | \lambda}^*
+			= \braket{\lambda | A^\dagger |  \lambda}
+			= \braket{\lambda | A | \lambda}
+			= \lambda \braket{\lambda | \lambda} = \lambda.
+		\end{aligned}
+\end{equation}
+		Hence eigenvalues of Hermitian matrix are real.
+		
+		($\Leftarrow$) Suppose eigenvalues of $A$ are real. From spectral theorem, normal matrix $A$ can be written by
+		\begin{equation}
+			\begin{aligned}
+				A= \sum_i \lambda_i \kb{\lambda_i}
+			\end{aligned}
+		\end{equation}
+
+		where $\lambda_i$ are  real eigenvalues with eigenvectors $\ket{\lambda_i}$.
+		By taking adjoint, we get
+		\begin{equation}
+\begin{aligned}
+			A^\dagger &= \sum_i \lambda_i^* \kb{\lambda_i}\\
+			&= \sum_i \lambda_i \kb{\lambda_i}~~~(\because \lambda_i \text{ are real})\\
+			&= A
+		\end{aligned}
+\end{equation}
+		Thus $A$ is Hermitian.
+	\end{proof}
+	
+	\Textbf{2.18}
+	
+	Suppose $\ket{v}$ is a eigenvector with corresponding eigenvalue $\lambda$.
+	\begin{equation}
+\begin{aligned}
+		U \ket{v} &= \lambda \ket{v}.\\
+		1 &= \braket{v | v}\\
+		&= \bra{v} I \ket{v}\\
+		&= \bra{v} U^\dagger U \ket{v}\\
+		&= \lambda \lambda^* \braket{v | v}\\
+		&= \norm{\lambda}^2\\
+		\therefore \lambda &= e^{i \theta}
+	\end{aligned}
+\end{equation}
+	
+	
+	
+	
+	\Textbf{2.19}
+	\begin{equation}
+\begin{aligned}
+		X^2 = \begin{bmatrix}
+			0 & 1 \\
+			1 & 0
+		\end{bmatrix}
+		\begin{bmatrix}
+			0 & 1 \\
+			1 & 0
+		\end{bmatrix}
+		= \begin{bmatrix}
+			1 & 0 \\
+			0 & 1
+		\end{bmatrix} = I
+	\end{aligned}
+\end{equation}
+	
+	
+	
+	\Textbf{2.20}
+	\begin{equation}
+\begin{aligned}
+		U &\equiv \sum_i \ket{w_i}\bra{v_i}\\
+		A_{ij}^{'} &= \braket{v_i | A | v_j}\\
+		&= \braket{v_i | UU^\dagger A UU^\dagger | v_j}\\
+		&= \sum_{p,q,r,s} \braket{v_i | w_p} \braket{v_p | v_q} \braket{w_q | A | w_r} \braket{v_r | v_s} \braket{w_s | v_j}\\
+		&= \sum_{p,q,r,s} \braket{v_i | w_p} \delta_{pq} A_{qr}^{''} \delta_{rs}  \braket{w_s | v_j}\\
+		&= \sum_{p,r}  \braket{v_i | w_p}  \braket{w_r | v_j} A_{pr}^{''}
+	\end{aligned}
+\end{equation}
+	
+	
+	\Textbf{2.21}
+	
+	Suppose $M$ be Hermitian. Then $M = M^\dagger$.
+	\begin{equation}
+\begin{aligned}
+		M &= IMI\\
+		&= (P+Q) M (P+Q)\\
+		&= PMP + QMP + PMQ + QMQ\\
+	\end{aligned}
+\end{equation}
+	Now $PMP = \lambda P$, $QMP = 0$, $PMQ = PM^\dagger Q = (QMP)^* = 0$.
+	Thus $M = PMP + QMQ$.
+	Next prove $QMQ$ is normal.
+	\begin{equation}
+\begin{aligned}
+		QMQ (QMQ)^\dagger &= QMQ QM^\dagger Q\\
+		&= QM^\dagger Q QMQ ~~~ (M = M^\dagger)\\
+		&= (QM^\dagger Q) QMQ
+	\end{aligned}
+\end{equation}
+	Therefore $QMQ$ is normal.
+	By induction, $QMQ$ is diagonal ... (following is same as Box 2.2)
+	
+	\Textbf{2.22}
+	
+	Suppose $A$ is a Hermitian operator and $\ket{v_i}$ are eigenvectors of $A$ with eigenvalues $\lambda_i$.
+	Then
+	\begin{equation}
+\begin{aligned}
+		\braket{v_i | A | v_j} = \lambda_j \braket{v_i | v_j}.
+	\end{aligned}
+\end{equation}
+	
+	On the other hand,
+	\begin{equation}
+\begin{aligned}
+		\braket{v_i | A | v_j} = \braket{v_i | A^\dagger | v_j}
+		= \braket{v_j | A | v_i}^*
+		= \lambda_i^* \braket{v_j | v_i}^*
+		=  \lambda_i^* \braket{v_i | v_j}
+		=  \lambda_i \braket{v_i | v_j}
+	\end{aligned}
+\end{equation}
+	
+	Thus
+	\begin{equation}
+\begin{aligned}
+		(\lambda_i - \lambda_j) \braket{v_i | v_j}  = 0.
+	\end{aligned}
+\end{equation}
+	If $\lambda_i \neq \lambda_j$, then $\braket{v_i | v_j}  = 0$.
+	
+	
+	\Textbf{2.23}
+	
+	Suppose $P$ is projector and $\ket{\lambda}$  are eigenvectors of $P$ with eigenvalues $\lambda$.
+	Then $P^2 = P$.
+	\begin{equation}
+\begin{aligned}
+		P \ket{\lambda} = \lambda \ket{\lambda} \text{ and }	P \ket{\lambda} = P^2 \ket{\lambda} = \lambda  P \ket{\lambda} = \lambda^2 \ket{\lambda}.
+	\end{aligned}
+\end{equation}
+	
+	Therefore
+	\begin{equation}
+\begin{aligned}
+		\lambda = \lambda^2\\
+		\lambda (\lambda - 1) = 0\\
+		\lambda = 0 \text{ or } 1.
+	\end{aligned}
+\end{equation}
+	
+	
+	\Textbf{2.24}
+	
+	Def of positive $\braket{v | A | v} \geq 0$ for all $\ket{v}$.
+	
+	Suppose $A$ is a positive operator. $A$ can be decomposed as follows.
+	\begin{equation}
+\begin{aligned}
+		A &= \frac{A + A^\dagger}{2} + i \frac{A - A^\dagger}{2i}\\
+		&= B + i C  ~~~\text{where } B =\frac{A + A^\dagger}{2}, ~~  C = \frac{A - A^\dagger}{2i}.
+	\end{aligned}
+\end{equation}
+	Now operators $B$ and $C$ are Hermitian.
+	
+	\begin{equation}
+\begin{aligned}
+		\braket{v | A | v}  &= \braket{v | B + iC | v}\\
+		&= \braket{v | B | v}  + i \braket{v | C | v}\\
+		&= \alpha + i \beta ~~ \text{where } \alpha = \braket{v | B | v}, ~\beta = \braket{v | C | v}.
+	\end{aligned}
+\end{equation}
+	
+	Since $B$ and $C$ are Hermitian, $\alpha,~ \beta \in \mathds{R}$.
+	From def of positive operator, $\beta$ should be vanished because $\braket{v | A | v}$ is real.
+	Hence $\beta = \braket{v | C | v} =  0$ for all $\ket{v}$, i.e. $C = 0$.
+	
+	Therefore $A = A^\dagger$.
+	
+
+		Reference: MIT 8.05 Lecture note  by Prof. Barton Zwiebach.\\
+		\url{https://ocw.mit.edu/courses/physics/8-05-quantum-physics-ii-fall-2013/lecture-notes/MIT8_05F13_Chap_03.pdf}
+		
+		\begin{prop} \label{prop: zeroop}
+			Let $T$ be a linear operator in a complex vector space $V$.
+			
+			If $(u, Tv) = 0$ for all $u, v \in V$, then $T = 0$.
+		\end{prop}
+		
+		\begin{proof}
+			Suppose $u = Tv$. Then $(Tv, Tv) = 0$ for all $v$ implies that $Tv = 0$ for all $v$. Therefore $T = 0$.
+		\end{proof}
+		
+		\begin{thm}
+			If $(v, Av) = 0$ for all $v \in V$, then $A = 0$. \label{thm:zerooperator}
+		\end{thm}
+		
+		\begin{proof}
+			First, we show that $(u, Tv) = 0$ if $(v, Av) = 0$. Then apply proposition \ref{prop: zeroop}\\
+			Suppose $u, v \in V$. Then $(u, Tv)$ is decomposed as
+			\begin{equation}
+\begin{aligned}
+				(u, Tv) = \frac{1}{4} \left[ (u+v, T(u+v)) - (u-v, T(u-v)) + \frac{1}{i} (u+iv, T(u+iv)) \right.\\
+				\left. \hspace{4cm} - \frac{1}{i} (u-iv, T(u-iv))  \right].
+			\end{aligned}
+\end{equation}
+			If $(v, Tv) = 0$ for all $v \in V$, the right hand side of above eqn vanishes. Thus $(u, Tv) = 0$ for all $u, v \in V$.
+			Then $T = 0$.
+		\end{proof}
+		
+		
+
+	
+	
+	\Textbf{2.25}
+	\begin{equation}
+\begin{aligned}
+		\braket{\psi | A^\dagger A | \psi} = \norm{A \ket{\psi}}^2 \geq 0 \text{ for all } \ket{\psi}.
+	\end{aligned}
+\end{equation}
+	Thus $A^\dagger A$ is positive.
+	
+	
+	\Textbf{2.26}
+	\begin{equation}
+\begin{aligned}
+		\ket{\psi}^{\otimes 2} &= \frac{1}{\sqrt{2}} (\ket{0} + \ket{1}) \otimes \frac{1}{\sqrt{2}} (\ket{0} + \ket{1}\\
+		&= \frac{1}{2} (\ket{00}  + \ket{01} + \ket{10} + \ket{11}  )\\
+		&= \frac{1}{2} \begin{bmatrix}
+			1 \\
+			1 \\
+			1 \\
+			1
+		\end{bmatrix}
+	\end{aligned}
+\end{equation}
+	
+	\begin{equation}
+\begin{aligned}
+		\ket{\psi}^{\otimes 3} &= \frac{1}{\sqrt{2}} (\ket{0} + \ket{1}) \otimes \frac{1}{\sqrt{2}} (\ket{0} + \ket{1}  \otimes \frac{1}{\sqrt{2}} (\ket{0} + \ket{1}\\
+		&= \frac{1}{2\sqrt{2}} (\ket{000}  + \ket{001} + \ket{010} + \ket{011} +  \ket{100}  + \ket{101} + \ket{110} + \ket{111})\\
+		&= \frac{1}{2\sqrt{2}} \begin{bmatrix}
+			1 \\
+			1 \\
+			1 \\
+			1 \\
+			1 \\
+			1 \\
+			1 \\
+			1
+		\end{bmatrix}
+	\end{aligned}
+\end{equation}
+	
+	
+	\Textbf{2.27}
+	\begin{equation}
+\begin{aligned}
+		X \otimes Z &= \begin{bmatrix}
+			0 & 1 \\
+			1 & 0
+		\end{bmatrix}
+		\otimes
+		\begin{bmatrix}
+			1 & 0 \\
+			0 & -1
+		\end{bmatrix} \\
+		&= \begin{bmatrix}
+			0 & 0 & 1 & 0 \\
+			0 & 0 & 0 & -1 \\
+			1 & 0 & 0 & 0 \\
+			0 & -1 & 0 & 0
+		\end{bmatrix}
+	\end{aligned}
+\end{equation}
+	
+	\begin{equation}
+\begin{aligned}
+		I \otimes X &= \begin{bmatrix}
+			1 & 0 \\
+			0 & 1
+		\end{bmatrix}
+		\otimes
+		\begin{bmatrix}
+			0 & 1 \\
+			1 & 0
+		\end{bmatrix}\\
+		&=
+		\begin{bmatrix}
+			0 & 1 & 0 & 0 \\
+			1 & 0 & 0 & 0 \\
+			0 & 0 & 0 & 1 \\
+			0 & 0 & 1 & 0
+		\end{bmatrix}
+	\end{aligned}
+\end{equation}
+	
+	\begin{equation}
+\begin{aligned}
+		X \otimes I &= \begin{bmatrix}
+			0 & 1 \\
+			1 & 0
+		\end{bmatrix}
+		\otimes
+		\begin{bmatrix}
+			1 & 0 \\
+			0 & 1
+		\end{bmatrix}\\
+		&= \begin{bmatrix}
+			0 & 0 & 1 & 0 \\
+			0 & 0 & 0 & 1 \\
+			1 & 0 & 0 & 0 \\
+			0 & 1 & 0 & 0
+		\end{bmatrix}
+	\end{aligned}
+\end{equation}
+	
+	In general, tensor product is not commutable.
+	
+	
+	
+	\Textbf{2.28}
+	\begin{equation}
+\begin{aligned}
+		(A \otimes B)^*
+		&=
+		\begin{bmatrix}
+			A_{11} B & \cdots & A_{1n} B \\
+			\vdots & \ddots  & \vdots \\
+			A_{m1}B & \cdots & A_{mn} B
+		\end{bmatrix}^* \\
+		&=
+		\begin{bmatrix}
+			A_{11}^* B^* & \cdots & A_{1n}^* B^* \\
+			\vdots & \ddots  & \vdots \\
+			A_{m1}^* B^* & \cdots & A_{mn}^* B^*
+		\end{bmatrix} \\
+		&= A^* \otimes B^*.
+	\end{aligned}
+\end{equation}
+	
+	
+	\begin{equation}
+\begin{aligned}
+		(A\otimes B)^T &=
+		\begin{bmatrix}
+			A_{11} B & \cdots & A_{1n} B \\
+			\vdots & \ddots  & \vdots \\
+			A_{m1}B & \cdots & A_{mn} B
+		\end{bmatrix}^T \\
+		&=
+		\begin{bmatrix}
+			A_{11} B^T & \cdots & A_{m1} B^T \\
+			\vdots & \ddots  & \vdots \\
+			A_{1n} B^T & \cdots & A_{mn} B^T
+		\end{bmatrix} \\
+		&=
+		\begin{bmatrix}
+			A_{11} B^T & \cdots & A_{1m} B^T \\
+			\vdots & \ddots  & \vdots \\
+			A_{n1} B^T & \cdots & A_{nm} B^T
+		\end{bmatrix} \\
+		&= A^T \otimes B^T.
+	\end{aligned}
+\end{equation}
+	
+	
+	\begin{equation}
+\begin{aligned}
+		(A\otimes B)^\dagger&=((A \otimes B)^*)^T	\\
+		&= (A^* \otimes B^*)^T\\
+		&= (A^*)^T \otimes (B^*)^T\\
+		&= A^\dagger \otimes B^\dagger.
+	\end{aligned}
+\end{equation}
+	
+	\Textbf{2.29}
+	Suppose $U_1$ and $U_2$ are unitary operators. Then
+	\begin{equation}
+\begin{aligned}
+		(U_1 \otimes U_2) (U_1 \otimes U_2)^\dagger &=U_1 U_1^\dagger \otimes U_2 U_2^\dagger\\
+		&= I \otimes I.
+	\end{aligned}
+\end{equation}
+	
+	Similarly,
+	\begin{equation}
+\begin{aligned}
+		(U_1 \otimes U_2)^\dagger (U_1 \otimes U_2)  = I \otimes I.
+	\end{aligned}
+\end{equation}
+	
+	\Textbf{2.30}
+	Suppose $A$ and $B$ are Hermitian operators. Then
+	\begin{equation}
+		\begin{aligned}
+			(A \otimes B)^\dagger = A^\dagger \otimes B^\dagger = A \otimes B.
+		\end{aligned}
+	\end{equation}
+	
+	Thus $A \otimes B$ is Hermitian.
+	
+	
+	
+	\Textbf{2.31}
+	
+	Suppose $A$ and $B$ are positive operators. Then
+	\begin{equation}
+\begin{aligned}
+		\bra{\psi} \otimes \bra{\phi} (A \otimes B) \ket{\psi} \otimes \ket{\phi} &= \braket{\psi |A| \psi} \braket{\phi | B | \phi}.
+	\end{aligned}
+\end{equation}
+	
+	Since $A$ and $B$ are positive operators,
+	$\braket{\psi |A| \psi} \geq 0$ and $\braket{\phi | B | \phi} \geq 0$ for all $\ket{\psi}, \ket{\phi} $.
+	Then $\braket{\psi |A| \psi} \braket{\phi | B | \phi} \geq 0$.
+	Thus $A \otimes B$ is positive if $A$ and $B$ are positive.
+	
+	
+	\Textbf{2.32}
+	
+	Suppose $P_1$ and $P_2$  are projectors. Then
+	\begin{equation}
+\begin{aligned}
+		(P_1 \otimes P_2) ^2 &= P_1^2 \otimes P_2^2\\
+		&= P_1 \otimes P_2.
+	\end{aligned}
+\end{equation}
+	Thus $ P_1 \otimes P_2.$ is also projector.
+	
+	
+	\Textbf{2.33}
+	\begin{equation}
+			\begin{aligned}
+			H  = \frac{1}{\sqrt{2}} \begin{bmatrix}
+				1 & 1 \\
+				1 & -1
+			\end{bmatrix}
+		\end{aligned}
+	\end{equation}
+
+	
+	\begin{equation}
+\begin{aligned}
+		H^{\otimes 2}
+		=
+		\frac{1}{\sqrt{2}} \begin{bmatrix}
+			1 & 1 \\
+			1 & -1
+		\end{bmatrix}
+		\otimes
+		\frac{1}{\sqrt{2}} \begin{bmatrix}
+			1 & 1 \\
+			1 & -1
+		\end{bmatrix}
+		=
+		\frac{1}{2} \begin{bmatrix}
+			1 & 1 & 1 & 1 \\
+			1 & -1 & 1 & -1 \\
+			1 & 1 & -1 & -1 \\
+			1 & -1 & -1 & 1
+		\end{bmatrix}
+	\end{aligned}
+\end{equation}
+	
+	
+	
+	\Textbf{2.34}
+	
+	Suppose $A = \begin{bmatrix}
+		4 & 3 \\
+		3 & 4
+	\end{bmatrix} $.
+	
+	\begin{equation}
+\begin{aligned}
+		\det (A - \lambda I ) &= (4-\lambda)^2 - 3^2\\
+		&= \lambda^2 -8\lambda + 7\\
+		&= (\lambda - 1)(\lambda - 7)
+	\end{aligned}
+\end{equation}
+	
+	Eigenvalues of $A$ are $\lambda = 1, ~ 7$.
+	Corresponding eigenvectors are
+	$
+	\ket{\lambda = 1} = \frac{1}{\sqrt{2}} \begin{bmatrix}
+		1 \\
+		-1
+	\end{bmatrix}
+	$,
+	$
+	\ket{\lambda = 7} = \frac{1}{\sqrt{2}} \begin{bmatrix}
+		1 \\
+		1
+	\end{bmatrix}
+	$.
+	
+	\vspace{5mm}
+	Thus
+	\begin{equation}
+\begin{aligned}
+		A = \kb{\lambda = 1} + 7 \kb{\lambda = 7}.
+	\end{aligned}
+\end{equation}
+	
+	\begin{equation}
+\begin{aligned}
+		\sqrt{A} &= \kb{\lambda = 1} + \sqrt{7} \kb{\lambda = 7}\\
+		&= \frac{1}{2} \begin{bmatrix}
+			1 & -1 \\
+			-1 & 1
+		\end{bmatrix}
+		+
+		\frac{\sqrt{7}}{2} \begin{bmatrix}
+			1 & 1 \\
+			1 & 1
+		\end{bmatrix}\\
+		&=
+		\frac{1}{2}
+		\begin{bmatrix}
+			1+\sqrt{7} & -1+\sqrt{7} \\
+			-1 + \sqrt{7} & 1+\sqrt{7}
+		\end{bmatrix}
+	\end{aligned}
+\end{equation}
+	
+	\begin{equation}
+\begin{aligned}
+		\log (A) &=  \log (1) \kb{\lambda = 1} + \log (7) \kb{\lambda = 7}\\
+		&= \frac{\log (7)}{2} \begin{bmatrix}
+			1 & 1 \\
+			1 & 1
+		\end{bmatrix}
+	\end{aligned}
+\end{equation}
+	
+	
+	
+	\Textbf{2.35}
+	\begin{equation}
+\begin{aligned}
+		\vec{v} \cdot \vec{\sigma} &= \sum_{i=1}^3 v_i \sigma_i\\
+		&= v_1 \begin{bmatrix}
+			0 & 1 \\
+			1 & 0
+		\end{bmatrix}
+		+ v_2 \begin{bmatrix}
+			0 & -i \\
+			i & 0
+		\end{bmatrix}
+		+ v_3 \begin{bmatrix}
+			1 & 0 \\
+			0 & -1
+		\end{bmatrix} \\
+		&= \begin{bmatrix}
+			v_3 & v_1 - i v_2 \\
+			v_1 + iv_2 & -v_3
+		\end{bmatrix}
+	\end{aligned}
+\end{equation}
+	
+	\begin{equation}
+\begin{aligned}
+		\det (\vec{v} \cdot \vec{\sigma}  - \lambda I) &= (v_3 - \lambda) (-v_3 - \lambda) - (v_1 - iv_2) (v_1 + iv_2)\\
+		&= \lambda^2 - (v_1^2 + v_2^2  + v_3^2)\\
+		&= \lambda^2 - 1 ~~~ (\because |\vec{v}| = 1)
+	\end{aligned}
+\end{equation}
+	Eigenvalues are $\lambda = \pm 1$.
+	Let $\ket{\lambda_{ \pm 1 } }$ be eigenvectors with eigenvalues $\pm  1$.
+	
+	Since $\vec{v} \cdot \vec{\sigma}$ is Hermitian,  $\vec{v} \cdot \vec{\sigma}$ is diagonalizable.
+	Then
+	\begin{equation}
+\begin{aligned}
+		\vec{v} \cdot \vec{\sigma} = \kb{\lambda_1} - \kb{\lambda_{-1}}
+	\end{aligned}
+\end{equation}
+	
+	Thus
+	\begin{equation}
+\begin{aligned}
+		\exp \left(i \theta \vec{v} \cdot \vec{\sigma} \right) &=
+		e^{i \theta} \kb{\lambda_1}  + e^{-i \theta} \kb{\lambda_{-1}}\\
+		&= (\cos \theta + i \sin \theta) \kb{\lambda_1} + (\cos \theta - i \sin \theta) \kb{\lambda_{-1}}\\
+		&= \cos \theta (\kb{\lambda_1} + \kb{\lambda_{-1}}) + i \sin \theta (\kb{\lambda_1} - \kb{\lambda_{-1}}) \\
+		&= \cos( \theta) I + i \sin (\theta) \vec{v} \cdot \vec{\sigma}.
+	\end{aligned}
+\end{equation}
+	
+	$\because$ Since $\vec{v} \cdot \vec{\sigma}$ is Hermitian, $\ket{\lambda_1}$ and $\ket{\lambda_{-1}}$ are orthogonal.
+	Thus
+	\begin{equation}
+\begin{aligned}
+		\kb{\lambda_1} + \kb{\lambda_{-1}} = I.
+	\end{aligned}
+\end{equation}
+	
+	
+	\Textbf{2.36}
+	\begin{equation}
+\begin{aligned}
+		\Tr (\sigma_1) &= \Tr \left(
+		\begin{bmatrix}
+			0 & 1 \\
+			1 & 0
+		\end{bmatrix}
+		\right) = 0\\
+		%
+		\Tr (\sigma_2) &= \Tr \left(
+		\begin{bmatrix}
+			0 & -i \\
+			i & 0
+		\end{bmatrix}
+		\right) = 0\\
+		%
+		\Tr (\sigma_3) &= \Tr \left(
+		\begin{bmatrix}
+			1 & 0 \\
+			0 & -1
+		\end{bmatrix}
+		\right) = 1 -1 = 0\\
+	\end{aligned}
+\end{equation}
+	
+	
+	
+	
+	\Textbf{2.37}
+	\begin{equation}
+\begin{aligned}
+		\Tr (AB) &= \sum_i \braket{i | AB | i}\\
+		&=\sum_i \braket{i | A I B | i}\\
+		&= \sum_{i,j} \braket{i | A | j}\braket{j | B | i}\\
+		&= \sum_{i,j} \braket{j | B | i} \braket{i | A | j}\\
+		&= \sum_j \braket{j | BA | j}\\
+		&= \Tr (BA)
+	\end{aligned}
+\end{equation}
+	
+	
+	
+	\Textbf{2.38}
+	\begin{equation}
+\begin{aligned}
+		\Tr (A + B) &= \sum_i \braket{i | A+B | i}\\
+		&= \sum_i (\braket{i|A|i}  + \braket{i | B | i}  )\\
+		&= \sum_i \braket{i|A|i} + \sum_i \braket{i|B|i}\\
+		&= \Tr (A) + \Tr (B).
+	\end{aligned}
+\end{equation}
+	
+	\begin{equation}
+\begin{aligned}
+		\Tr (z A) &=  \sum_i \braket{i | z A | i}\\
+		&= \sum_i z \braket{i | A | i}\\
+		&= z \sum_i \braket{i | A | i}\\
+		&= z \Tr (A).
+	\end{aligned}
+\end{equation}
+	
+	
+	
+	
+	\Textbf{2.39}
+	
+	(1) $(A, B) \equiv \Tr (A^\dagger B)$.
+	
+	\vspace{5mm}
+	(i)
+	\begin{equation}
+\begin{aligned}
+		\left(A, \sum_i \lambda_i B_i \right) &= \Tr \left[ A^\dagger \left(\sum_i \lambda_i B_i  \right) \right]\\
+		&= \Tr (A^\dagger \lambda_1 B_1) + \cdots +  \Tr (A^\dagger \lambda_n B_n) ~~~ (\because \text{Execise 2.38}) \\
+		&= \lambda_1 \Tr (A^\dagger B_1)  + \cdots  + \lambda_n \Tr (A^\dagger B_n) \\
+		&= \sum_i \lambda_i \Tr (A^\dagger B_i)
+	\end{aligned}
+\end{equation}
+	
+	
+	(ii)
+	\begin{equation}
+\begin{aligned}
+		(A, B)^* &= \left( \Tr (A^\dagger B) \right)^*\\
+		&= \left(\sum_{i,j} \braket{ i | A^\dagger | j} \braket{j | B | i}  \right)^*\\
+		&= \sum_{i,j} \braket{ i | A^\dagger | j}^* \braket{j | B | i}^*\\
+		&= \sum_{i,j}  \braket{j | B | i}^* \braket{ i | A^\dagger | j}^*\\
+		&=  \sum_{i,j}  \braket{i | B^\dagger | j} \braket{ j | A | i}\\
+		&= \sum_i \braket{i | B^\dagger A | i} \\
+		&= \Tr (B^\dagger A)\\
+		&= (B, A).
+	\end{aligned}
+\end{equation}
+	
+	
+	(iii)
+	\begin{equation}
+\begin{aligned}
+		(A, A) &= \Tr (A^\dagger A)\\
+		&= \sum_i \braket{ i | A^\dagger A | i }
+	\end{aligned}
+\end{equation}
+	Since $A^\dagger A$ is positive, $\braket{ i | A^\dagger A | i } \geq 0$ for all $\ket{ i }$.
+	
+	
+	Let $a_i$ be i-th column of $A$.
+	If $\braket{ i | A^\dagger A | i } = 0$, then
+	\begin{equation}
+\begin{aligned}
+		\braket{ i | A^\dagger A | i } = a^\dagger_i a_i = \norm{a_i}^2 = 0 \text{ iff }a_i = \mathbf{0}.
+	\end{aligned}
+\end{equation}
+	
+	Therefore $(A, A) = 0$ iff $A = \mathbf{0}$.
+	
+	\vspace{5mm}
+	(2)
+	
+	(3)
+	
+	
+	%\begin{bmatrix}
+	%	0 & 1 \\
+	%	1 & 0
+	%\end{bmatrix}
+	%
+	%\begin{bmatrix}
+	%	0 & -i \\
+	%	i & 0
+	%\end{bmatrix}
+	%
+	%\begin{bmatrix}
+	%	1 & 0 \\
+	%	0 & -1
+	%\end{bmatrix}
+	
+	\Textbf{2.40}
+	\begin{equation}
+\begin{aligned}
+		\left[X, Y \right] &=XY - YX\\
+		&= \begin{bmatrix}
+			0 & 1 \\
+			1 & 0
+		\end{bmatrix}
+		\begin{bmatrix}
+			0 & -i \\
+			i & 0
+		\end{bmatrix}
+		-
+		\begin{bmatrix}
+			0 & -i \\
+			i & 0
+		\end{bmatrix}
+		\begin{bmatrix}
+			0 & 1 \\
+			1 & 0
+		\end{bmatrix} \\
+		%
+		&=
+		%
+		\begin{bmatrix}
+			i & 0 \\
+			0 & -i
+		\end{bmatrix}
+		-
+		\begin{bmatrix}
+			-i & 0 \\
+			0 & i
+		\end{bmatrix}\\
+		%
+		&=
+		%
+		\begin{bmatrix}
+			2i & 0 \\
+			0 & -2i
+		\end{bmatrix} \\
+		%
+		&=	2i Z
+	\end{aligned}
+\end{equation}
+	
+	
+	
+	\begin{equation}
+\begin{aligned}
+		\left[Y, Z \right] &= \begin{bmatrix}
+			0 & -i \\
+			i & 0
+		\end{bmatrix}
+		\begin{bmatrix}
+			1 & 0 \\
+			0 & -1
+		\end{bmatrix}
+		-
+		\begin{bmatrix}
+			1 & 0 \\
+			0 & -1
+		\end{bmatrix}
+		\begin{bmatrix}
+			0 & -i \\
+			i & 0
+		\end{bmatrix}\\
+		&=
+		\begin{bmatrix}
+			0 & 2i \\
+			2i & 0
+		\end{bmatrix}\\
+		&= 2iX
+	\end{aligned}
+\end{equation}
+	
+	
+	
+	\begin{equation}
+\begin{aligned}
+		\left[Z, X\right] &= \begin{bmatrix}
+			1 & 0 \\
+			0 & -1
+		\end{bmatrix}
+		\begin{bmatrix}
+			0 & 1 \\
+			1 & 0
+		\end{bmatrix}
+		-
+		\begin{bmatrix}
+			0 & 1 \\
+			1 & 0
+		\end{bmatrix}
+		\begin{bmatrix}
+			1 & 0 \\
+			0 & -1
+		\end{bmatrix}\\
+		&=
+		2i \begin{bmatrix}
+			0 & -i \\
+			i & 0
+		\end{bmatrix}\\
+		&= 2iY
+	\end{aligned}
+\end{equation}
+	
+	
+	
+	\Textbf{2.41}
+	\begin{equation}
+\begin{aligned}
+		\left\{\sigma_1, \sigma_2 \right\} &=\sigma_1 \sigma_2 + \sigma_2 \sigma_1\\
+		&= \begin{bmatrix}
+			0 & 1 \\
+			1 & 0
+		\end{bmatrix}
+		\begin{bmatrix}
+			0 & -i \\
+			i & 0
+		\end{bmatrix}
+		+
+		\begin{bmatrix}
+			0 & -i \\
+			i & 0
+		\end{bmatrix}
+		\begin{bmatrix}
+			0 & 1 \\
+			1 & 0
+		\end{bmatrix} \\
+		%
+		&=
+		%
+		\begin{bmatrix}
+			i & 0 \\
+			0 & -i
+		\end{bmatrix}
+		+
+		\begin{bmatrix}
+			-i & 0 \\
+			0 & i
+		\end{bmatrix}\\
+		%
+		&= 0
+	\end{aligned}
+\end{equation}
+	
+	
+	
+	\begin{equation}
+\begin{aligned}
+		\left\{\sigma_2, \sigma_3 \right\} &= \begin{bmatrix}
+			0 & -i \\
+			i & 0
+		\end{bmatrix}
+		\begin{bmatrix}
+			1 & 0 \\
+			0 & -1
+		\end{bmatrix}
+		+
+		\begin{bmatrix}
+			1 & 0 \\
+			0 & -1
+		\end{bmatrix}
+		\begin{bmatrix}
+			0 & -i \\
+			i & 0
+		\end{bmatrix}\\
+		&=0
+	\end{aligned}
+\end{equation}
+	
+	
+	
+	\begin{equation}
+\begin{aligned}
+		\left\{\sigma_3, \sigma_1 \right\} &= \begin{bmatrix}
+			1 & 0 \\
+			0 & -1
+		\end{bmatrix}
+		\begin{bmatrix}
+			0 & 1 \\
+			1 & 0
+		\end{bmatrix}
+		+
+		\begin{bmatrix}
+			0 & 1 \\
+			1 & 0
+		\end{bmatrix}
+		\begin{bmatrix}
+			1 & 0 \\
+			0 & -1
+		\end{bmatrix}\\
+		&=0
+	\end{aligned}
+\end{equation}
+	
+	\begin{equation}
+\begin{aligned}
+		\sigma_0^2 &= I^2 = I\\
+		%
+		\sigma_1^2 &= \begin{bmatrix}
+			0 & 1 \\
+			1 & 0
+		\end{bmatrix} ^2 = I\\
+		%
+		\sigma_2^2 &= \begin{bmatrix}
+			0 & -i \\
+			i & 0
+		\end{bmatrix} ^2 = I\\
+		%
+		\sigma_3^2 &= \begin{bmatrix}
+			1 & 0 \\
+			0 & -1
+		\end{bmatrix} ^2 = I
+	\end{aligned}
+\end{equation}
+	
+	
+	
+	\Textbf{2.42}
+	\begin{equation}
+\begin{aligned}
+		\frac{\left[A, B \right] + \left\{A, B\right\}}{2} = \frac{AB - BA + AB + BA}{2} = AB
+	\end{aligned}
+\end{equation}
+	
+	
+	
+	\Textbf{2.43}
+	
+	From eq (2.75) and eq (2.76), $\left\{\sigma_j,  \sigma_k \right\} = 2 \delta_{jk} I$.
+	From eq (2.77),
+	\begin{equation}
+\begin{aligned}
+		\sigma_j \sigma_k &= \frac{\left[\sigma_j, \sigma_k  \right] + \left\{\sigma_j, \sigma_k \right\}}{2}\\
+		&= \frac{2i \sum_{l=1}^{3} \epsilon_{jkl}\sigma_l +  2 \delta_{jk} I}{2}\\
+		&= \delta_{jk} I + i \sum_{l=1}^{3} \epsilon_{jkl}\sigma_l
+	\end{aligned}
+\end{equation}
+	
+	
+	\Textbf{2.44}
+	
+	By assumption, $\left[A, B\right] = 0$ and $\left\{A, B\right\} = 0$, then $AB = 0$.
+	Since $A$ is invertible, multiply by $A^{-1}$ from left, then
+	\begin{equation}
+\begin{aligned}
+		A^{-1} AB = 0\\
+		IB = 0\\
+		B=0.
+	\end{aligned}
+\end{equation}
+	
+	
+	\Textbf{2.45}
+	\begin{equation}
+\begin{aligned}
+		\left[A, B\right]^\dagger &= (AB -BA)^\dagger\\
+		&= B^\dagger A^\dagger - A^\dagger B^\dagger\\
+		&= \left[B^\dagger, A^\dagger \right]
+	\end{aligned}
+\end{equation}
+	
+	
+	
+	\Textbf{2.46}
+	\begin{equation}
+\begin{aligned}
+		\left[A, B\right] &= AB - BA\\
+		&= - (BA - AB)\\
+		&= -\left[B, A\right]
+	\end{aligned}
+\end{equation}
+	
+	
+	
+	\Textbf{2.47}
+	\begin{equation}
+\begin{aligned}
+		\left(i \left[A, B\right] \right)^\dagger &= -i \left[A, B\right]^\dagger\\
+		&= -i \left[B^\dagger, A^\dagger \right]\\
+		&= -i \left[B, A \right]\\
+		&= i \left[A, B\right]
+	\end{aligned}
+\end{equation}
+	
+	
+	
+	\Textbf{2.48}
+	
+	(Positive )
+	
+	Since $P$ is positive, it is diagonalizable. Then $P = \sum_i \lambda_i \kb{i}$, $(\lambda_i \geq 0)$.
+	\begin{equation}
+\begin{aligned}
+		J = \sqrt{P^\dagger P} = \sqrt{P P} = \sqrt{P^2} = \sum_i \sqrt{\lambda_i^2} \kb{i} = \sum_i \lambda_i \kb{i} = P.
+	\end{aligned}
+\end{equation}
+	Therefore polar decomposition of $P$ is $P = UP$ for all $P$.
+	Thus $U = I$, then $P = P$.
+	
+	
+	\vspace{5mm}
+	(Unitary)
+	
+	Suppose unitary $U$ is decomposed by $U = WJ$ where $W$ is unitary and $J$ is positive, $J = \sqrt{U^\dagger U}$.
+	\begin{equation}
+\begin{aligned}
+		J = \sqrt{U^\dagger U} = \sqrt{I} = I
+	\end{aligned}
+\end{equation}
+	Since unitary operators are invertible, $W = UJ^{-1} = UI^{-1} = UI = U$.
+	Thus polar decomposition of $U$ is $U = U$.
+	
+	
+	\vspace{5mm}
+	(Hermitian)
+	
+	Suppose $H = UJ$.
+	\begin{equation}
+\begin{aligned}
+		J = \sqrt{H^\dagger H} = \sqrt{HH} = \sqrt{H^2}.
+	\end{aligned}
+\end{equation}
+	Thus $H = U\sqrt{H^2}$.
+	
+
+		In general, $H \neq \sqrt{H^2}$.
+		
+		From spectral decomposition, $H = \sum_i \lambda_i \kb{i}$, $\lambda_i \in \mathds{R}$.
+		\begin{equation}
+\begin{aligned}
+			\sqrt{H^2} = \sqrt{ \sum_i \lambda_i^2 \kb{i} }
+			=
+			\sum_i
+			\sqrt{
+				\lambda_i^2
+			} \kb{i}
+			= \sum_i | \lambda_i | \kb{i} \neq H
+		\end{aligned}
+\end{equation}
+
+	
+	
+	\Textbf{2.49}
+	
+	Normal matrix is diagonalizable, $A = \sum_i \lambda_i \kb{i}$.
+	\begin{equation}
+\begin{aligned}
+		J &= \sqrt{A^\dagger A} = \sum_i | \lambda_i | \kb{i}.\\
+		U &= \sum_i \kbt{e_i}{i}\\
+		A &= UJ = \sum_i |\lambda_i| \kbt{e_i}{i}.
+	\end{aligned}
+\end{equation}
+	
+	
+	
+	\Textbf{2.50}
+	
+	Define
+	$A = \begin{bmatrix}
+		1 & 0 \\
+		1 & 1
+	\end{bmatrix}$.
+	%
+	$A^\dagger A = \begin{bmatrix}
+		2 & 1 \\
+		1 & 1
+	\end{bmatrix}$.
+	
+	Characteristic equation of $A^\dagger A$ is $\det(A^\dagger A - \lambda I) = \lambda^2 - 3 \lambda + 1 = 0$.
+	Eigenvalues of $A^\dagger A$ are $\lambda_\pm = \frac{3 \pm \sqrt{5}}{2}$
+	and associated eigenvectors are $\ket{\lambda_\pm} = \frac{1}{\sqrt{10 \mp 2 \sqrt{5}}} \begin{bmatrix}
+		2 \\
+		-1 \pm \sqrt{5}
+	\end{bmatrix} $.
+	
+	\begin{equation}
+\begin{aligned}
+		A^\dagger A = \lambda_+ \kb{\lambda_+} + \lambda_- \kb{\lambda_-}.
+	\end{aligned}
+\end{equation}
+	
+	\begin{equation}
+\begin{aligned}
+		J = \sqrt{A^\dagger A} &= \sqrt{\lambda_+} \kb{\lambda_+} + \sqrt{\lambda_-} \kb{\lambda_-}\\
+		&= \sqrt{\frac{3 + \sqrt{5}}{2}} \cdot \frac{5 - \sqrt{5}}{40} \begin{bmatrix}
+			4 & 2\sqrt{5} -2 \\
+			2 \sqrt{5} - 2 & 6 -2\sqrt{5}
+		\end{bmatrix}
+		+
+		\sqrt{\frac{3 - \sqrt{5}}{2}} \cdot \frac{5 + \sqrt{5}}{40} \begin{bmatrix}
+			4 & -2\sqrt{5} -2 \\
+			-2 \sqrt{5} - 2 & 6 +2\sqrt{5}
+		\end{bmatrix}
+	\end{aligned}
+\end{equation}
+	
+	
+	\begin{equation}
+\begin{aligned}
+		J^{-1} = \frac{1}{ \sqrt{\lambda_+} } \kb{\lambda_+} + \frac{1}{ \sqrt{\lambda_-} } \kb{\lambda_-}.
+	\end{aligned}
+\end{equation}
+	
+	
+	\begin{equation}
+\begin{aligned}
+		U = AJ^{-1}
+	\end{aligned}
+\end{equation}
+	
+	I'm tired.
+	
+	
+	
+	
+	\Textbf{2.51}
+	
+	\begin{equation}
+\begin{aligned}
+		H^\dagger H = \left(\frac{1}{\sqrt{2}} \begin{bmatrix}
+			1 & 1 \\
+			1 & -1
+		\end{bmatrix}\right)^\dagger
+		\frac{1}{\sqrt{2}} \begin{bmatrix}
+			1 & 1 \\
+			1 & -1
+		\end{bmatrix}
+		=
+		\frac{1}{\sqrt{2}} \begin{bmatrix}
+			1 & 1 \\
+			1 & -1
+		\end{bmatrix}
+		\frac{1}{\sqrt{2}} \begin{bmatrix}
+			1 & 1 \\
+			1 & -1
+		\end{bmatrix}
+		=
+		\frac{1}{2} \begin{bmatrix}
+			2 & 0 \\
+			0 & 2
+		\end{bmatrix}
+		=
+		I.
+	\end{aligned}
+\end{equation}
+	
+	
+	
+	
+	\Textbf{2.52}
+	
+	\begin{equation}
+\begin{aligned}
+		H^\dagger = \left(\frac{1}{\sqrt{2}} \begin{bmatrix}
+			1 & 1 \\
+			1 & -1
+		\end{bmatrix}\right)^\dagger
+		=
+		\frac{1}{\sqrt{2}} \begin{bmatrix}
+			1 & 1 \\
+			1 & -1
+		\end{bmatrix}
+		=
+		H.
+	\end{aligned}
+\end{equation}
+	
+	Thus
+	\begin{equation}
+\begin{aligned}
+		H^2 = I.
+	\end{aligned}
+\end{equation}
+	
+	
+	
+	\Textbf{2.53}
+	
+	\begin{equation}
+\begin{aligned}
+		\det \left(H - \lambda I\right) &= \left(\frac{1}{\sqrt{2}} - \lambda \right) \left(- \frac{1}{\sqrt{2}} - \lambda \right) - \frac{1}{2}\\
+		&= \lambda^2 - \frac{1}{2} - \frac{1}{2}\\
+		&= \lambda^2 - 1
+	\end{aligned}
+\end{equation}
+	
+	Eigenvalues are $\lambda_\pm = \pm 1$ and associated eigenvectors are $\ket{\lambda_\pm} = \frac{1}{\sqrt{4 \mp 2 \sqrt{2}}} \begin{bmatrix}
+		1 \\
+		-1 \pm \sqrt{2}
+	\end{bmatrix} $.
+	
+	
+	
+	
+	\Textbf{2.54}
+	
+	Since $[A, B] = 0$, $A$ and $B$ are simultaneously diagonalize, $A = \sum_i a_i \kb{i}$, $B = \sum_i b_i \kb{i}$.
+	\begin{equation}
+\begin{aligned}
+		\exp (A) \exp (B) &= \left(\sum_i \exp (a_i) \kb{i}\right) \left(\sum_i \exp (b_i) \kb{i}\right) \\
+		&= \sum_{i,j} \exp (a_i + b_j) \ket{i} \braket{i | j} \bra{j}\\
+		&= \sum_{i,j} \exp (a_i + b_j) \kbt{i}{j} \delta_{i, j}\\
+		&= \sum_i \exp (a_i +  b_i) \kb{i}\\
+		&= \exp (A+B)
+	\end{aligned}
+\end{equation}
+	
+	
+	\Textbf{2.55}
+	\begin{equation}
+\begin{aligned}
+		H = \sum_E E \kb{E}
+	\end{aligned}
+\end{equation}
+	
+	\begin{equation}
+\begin{aligned}
+		U(t_2 - t_1) U^\dagger (t_2 - t_1) &= \exp \left( - \frac{iH(t_2 - t_1)}{\hbar} \right)  \exp \left(  \frac{iH(t_2 - t_1)}{\hbar} \right)\\
+		&= \sum_{E, E'} \left(\exp \left(- \frac{iE(t_2 - t_1)}{\hbar} \right) \kb{E} \right)
+		\left(\exp \left(- \frac{iE'(t_2 - t_1)}{\hbar} \right) \kb{E'} \right)\\
+		&= \sum_{E, E'} \left(\exp \left(- \frac{i(E-E')(t_2 - t_1)}{\hbar} \right) \kbt{E}{E'} \delta_{E,E'} \right) \\
+		&= \sum_E \exp(0) \kb{E}\\
+		&= \sum_E \kb{E}\\
+		&= I
+	\end{aligned}
+\end{equation}
+	
+	Similarly, $U^\dagger (t_2 - t_1) U (t_2 - t_1) = I$.
+	
+	
+	
+	\Textbf{2.56}
+	
+	$U = \sum_i \lambda_i \kb{\lambda_i}$~~~ ($|\lambda_i| = 1$).
+	\begin{equation}
+\begin{aligned}
+		\log (U) &= \sum_j \log (\lambda_j) \kb{\lambda_j} = \sum_j i \theta_j  \kb{\lambda_j} \text{ where } \theta_j = \arg (\lambda_j)\\
+		K &= - i \log(U) = \sum_j \theta_j \kb{\lambda_j}.
+	\end{aligned}
+\end{equation}
+	
+	\begin{equation}
+\begin{aligned}
+		K^\dagger = (-i \log U)^\dagger = \left(\sum_j \theta_j \kb{\lambda_j}\right)^\dagger
+		= \sum_j \theta_j^* \kb{\lambda_j} = \sum_j \theta_j \kb{\lambda_j} = K
+	\end{aligned}
+\end{equation}
+	
+	
+	
+	\Textbf{2.57}
+	\begin{equation}
+\begin{aligned}
+		&\ket{\phi} \equiv \frac{L_l \ket{\psi}}{\sqrt{\braket{\psi |L_l^\dagger L_l | \psi}}}\\
+		&\braket{\phi | M_m^\dagger M_m | \phi} = \frac{\braket{\psi | L_l^\dagger M_m^\dagger M_m L_l | \psi}}{\braket{\psi | L_l^\dagger L_l | \psi}} \\
+		%
+		&\frac{M_m \ket{\phi}}{\sqrt{\braket{\phi | M_m^\dagger M_m | \phi}}} =
+		\frac{M_m L_l \ket{\psi}}{\sqrt{\braket{\psi |L_l^\dagger L_l | \psi}}}
+		\cdot
+		\frac{ \sqrt{\braket{\psi | L_l^\dagger L_l | \psi}} }{ \sqrt{\braket{\psi | L_l^\dagger M_m^\dagger M_m L_l | \psi}} }
+		=
+		\frac{M_m L_l \ket{\psi}}{ \sqrt{\braket{\psi | L_l^\dagger M_m^\dagger M_m L_l | \psi}} }
+		=
+		\frac{N_{lm} \ket{\psi}}{\sqrt{\braket{\psi |N^\dagger_{lm}  N_{lm}  | \psi}}}
+	\end{aligned}
+\end{equation}
+	
+	
+	
+	\Textbf{2.58}
+	\begin{equation}
+\begin{aligned}
+		\braket{M} &= \braket{ \psi | M | \psi} = \braket{\psi | m | \psi} = m \braket{\psi | \psi} = m\\
+		\braket{M^2} &= \braket{ \psi | M^2 | \psi} = \braket{\psi | m^2 | \psi} = m^2 \braket{\psi | \psi} = m^2\\
+		\text{deviation} &= \braket{M^2} - \braket{M}^2 = m^2 - m^2 = 0.
+	\end{aligned}
+\end{equation}
+	
+	
+	\Textbf{2.59}
+	\begin{equation}
+\begin{aligned}
+		\braket{X} &= \braket{0 | X | 0} = \braket{0 | 1} = 0\\
+		\braket{X^2} &= \braket{0 | X^2 | 0} = \braket{0 | X | 1} =\braket{0 | 0} = 1\\
+		\text{standard deviation} &= \sqrt{ \braket{X^2} - \braket{X}^2 } = 1
+	\end{aligned}
+\end{equation}
+	
+	
+	\Textbf{2.60}
+	\begin{equation}
+\begin{aligned}
+		\vec{v} \cdot \vec{\sigma} &= \sum_{i=1}^3 v_i \sigma_i\\
+		&= v_1 \begin{bmatrix}
+			0 & 1 \\
+			1 & 0
+		\end{bmatrix}
+		+ v_2 \begin{bmatrix}
+			0 & -i \\
+			i & 0
+		\end{bmatrix}
+		+ v_3 \begin{bmatrix}
+			1 & 0 \\
+			0 & -1
+		\end{bmatrix} \\
+		&= \begin{bmatrix}
+			v_3 & v_1 - i v_2 \\
+			v_1 + iv_2 & -v_3
+		\end{bmatrix}
+	\end{aligned}
+\end{equation}
+	
+	\begin{equation}
+\begin{aligned}
+		\det (\vec{v} \cdot \vec{\sigma}  - \lambda I) &= (v_3 - \lambda) (-v_3 - \lambda) - (v_1 - iv_2) (v_1 + iv_2)\\
+		&= \lambda^2 - (v_1^2 + v_2^2  + v_3^2)\\
+		&= \lambda^2 - 1 ~~~ (\because |\vec{v}| = 1)
+	\end{aligned}
+\end{equation}
+	Eigenvalues are $\lambda = \pm 1$.
+	
+	
+	(i) if $\lambda = 1$
+	\begin{equation}
+\begin{aligned}
+		\vec{v} \cdot \vec{\sigma}  - \lambda I &= \vec{v} \cdot \vec{\sigma}  - I\\
+		&= \begin{bmatrix}
+			v_3 - 1 & v_1 - i v_2 \\
+			v_1 + i v_2 & - v_3 - 1
+		\end{bmatrix}
+	\end{aligned}
+\end{equation}
+	
+	Normalized eigenvector is $\ket{\lambda_1} = \sqrt{ \frac{1+v_3}{2 }} \begin{bmatrix}
+		1 \\
+		\frac{1-v_3}{v_1 - iv_2}
+	\end{bmatrix} $.
+	
+	\begin{equation}
+\begin{aligned}
+		\kb{\lambda_1} &= \frac{1+v_3}{2 } \begin{bmatrix}
+			1 \\
+			\frac{1-v_3}{v_1 - iv_2}
+		\end{bmatrix}
+		\begin{bmatrix}
+			1 &
+			\frac{1-v_3}{v_1 + iv_2}
+		\end{bmatrix}\\
+		%
+		&=
+		\frac{1+v_3}{2 } \begin{bmatrix}
+			1 & \frac{v_1 - iv_2}{1 + v_3} \\
+			\frac{v_1 + iv_2}{1 + v_3} & \frac{1-v_3}{1+v_3}
+		\end{bmatrix} \\
+		&=
+		\frac{1}{2} \begin{bmatrix}
+			1+v_3 & v_1 - iv_2 \\
+			v_1 + iv_2 & 1 - v_3
+		\end{bmatrix} \\
+		&=
+		\frac{1}{2} \left( I + \begin{bmatrix}
+			v_3 & v_1 - iv_2 \\
+			v_1 + iv_2 & - v_3
+		\end{bmatrix} \right) \\
+		&=
+		\frac{1}{2} (I + \vec{v} \cdot \vec{\sigma} )
+	\end{aligned}
+\end{equation}
+	
+	
+	
+	(ii) If $\lambda = -1$.
+	\begin{equation}
+\begin{aligned}
+		\vec{v} \cdot \vec{\sigma}  - \lambda I &= \vec{v} \cdot \vec{\sigma}  + I\\
+		&= \begin{bmatrix}
+			v_3 + 1 & v_1 - i v_2 \\
+			v_1 + i v_2 & - v_3 + 1
+		\end{bmatrix}
+	\end{aligned}
+\end{equation}
+	
+	Normalized eigenvalue is $\ket{\lambda_{-1}} = \sqrt{ \frac{1-v_3}{2 }} \begin{bmatrix}
+		1 \\
+		- \frac{1+v_3}{v_1 - iv_2}
+	\end{bmatrix} $.
+	
+	
+	\begin{equation}
+\begin{aligned}
+		\kb{\lambda_{-1}} &= \frac{1 - v_3}{2} \begin{bmatrix}
+			1 \\
+			- \frac{1+v_3}{v_1 - iv_2}
+		\end{bmatrix}
+		\begin{bmatrix}
+			1 & - \frac{1+v_3}{v_1 + iv_2}
+		\end{bmatrix}\\
+		&=
+		\frac{1 - v_3}{2} \begin{bmatrix}
+			1 & - \frac{v_1 - iv_2}{1 - v_3} \\
+			- \frac{v_1 + iv_2}{1 - v_3} & \frac{1+v_3}{1 - v_3}
+		\end{bmatrix} \\
+		&=
+		\frac{1}{2} \begin{bmatrix}
+			1 - v_3 & -(v_1 - iv_2) \\
+			- (v_1 + iv_2) & 1 + v_3
+		\end{bmatrix} \\
+		&=
+		\frac{1}{2} \left( I - \begin{bmatrix}
+			v_3 & v_1 - iv_2 \\
+			(v_1 + iv_2 & - v_3
+		\end{bmatrix} \right)\\
+		&= \frac{1}{2} (I - \vec{v} \cdot \vec{\sigma} ).
+	\end{aligned}
+\end{equation}
+	
+	
+	While I review my proof, I notice that my proof has a defect.
+	The case $(v_1,v_2,v_3) = (0,0,1)$, second component of eigenstate, $\frac{1-v_3}{v_1 - iv_2}$, diverges.
+	So I implicitly assume $v_1 - iv_2 \neq 0$. Hence my proof is incomplete.
+	
+	Since the exercise doesn't require explicit form of projector, we should prove the problem more abstractly.
+	In order to prove, we use the following properties of $\vec{v} \cdot \vec{\sigma}$
+	\begin{itemize}
+		\item $\vec{v} \cdot \vec{\sigma}$ is Hermitian
+		\item $(\vec{v} \cdot \vec{\sigma})^2 = I$ where $\vec{v}$ is a real unit vector.
+	\end{itemize}
+	
+	We can easily check above conditions.
+	\begin{equation}
+\begin{aligned}
+		(\vec{v} \cdot \vec{\sigma})^\dagger &= (v_1 \sigma_1 + v_2 \sigma_2 + v_3 \sigma_3)^\dagger\\
+		&= v_1 \sigma_1^\dagger + v_2 \sigma_2^\dagger + v_3 \sigma_3^\dagger\\
+		&= v_1 \sigma_1 + v_2 \sigma_2 + v_3 \sigma_3~~~(\because \text{Pauli matrices are Hermitian.})\\
+		&= \vec{v} \cdot \vec{\sigma}
+	\end{aligned}
+\end{equation}
+	
+	\begin{equation}
+\begin{aligned}
+		(\vec{v} \cdot \vec{\sigma})^2 &= \sum_{j,k=1}^3 (v_j \sigma_j)  (v_k \sigma_k)\\
+		&= \sum_{j,k=1}^3 v_j v_k \sigma_j \sigma_k\\
+		&= \sum_{j,k=1}^3 v_j v_k \left(\delta_{jk}I + i \sum_{l=1}^3 \epsilon_{jkl}\sigma_l \right) ~~~(\because \text{eqn}(2.78)~ \text{page} 78)\\
+		&= \sum_{j,k=1}^3 v_j v_k \delta_{jk}I  + i \sum_{j,k,l=1}^3 \epsilon_{jkl} v_j v_k \sigma_l\\
+		&= \sum_{j=1}^3 v_j^2 I\\
+		&= I ~~~\left(\because \sum_j v_j^2 = 1 \right)
+	\end{aligned}
+\end{equation}
+	
+	
+	\begin{proof}
+		Suppose $\ket{\lambda}$ is an eigenstate of $\vec{v} \cdot \vec{\sigma}$ with eigenvalue $\lambda$. Then
+		\begin{equation}
+\begin{aligned}
+			\vec{v} \cdot \vec{\sigma} \ket{\lambda} = \lambda \ket{\lambda}\\
+			(\vec{v} \cdot \vec{\sigma})^2 \ket{\lambda} = \lambda^2 \ket{\lambda}
+		\end{aligned}
+\end{equation}
+		On the other hand $(\vec{v} \cdot \vec{\sigma})^2 = I$,
+		\begin{equation}
+\begin{aligned}
+			(\vec{v} \cdot \vec{\sigma})^2 \ket{\lambda} = I \ket{\lambda} = \ket{\lambda}\\
+			\therefore \lambda^2\ket{\lambda} = \ket{\lambda}.
+		\end{aligned}
+\end{equation}
+		Thus $\lambda^2 = 1 \Rightarrow \lambda = \pm 1$. Therefore $\vec{v} \cdot \vec{\sigma}$ has eigenvalues $\pm 1$.
+		
+		Let $\ket{\lambda_1}$ and $\ket{\lambda_{-1}}$ are eigenvectors with eigenvalues $1$ and $-1$, respectively.
+		I will prove that $P_\pm = \kb{\lambda_{\pm 1}}$.
+		
+		In order to prove above equation, all we have to do is prove following condition. (see Theorem \ref{thm:zerooperator})
+		\begin{equation}
+						\begin{aligned}
+				\braket{\psi | (P_\pm - \kb{\lambda_{\pm 1}})| \psi} = 0 \text{ for all } \ket{\psi} \in \mathds{C}^2.
+			\end{aligned}
+		\end{equation}
+
+		
+		
+		Since $\vec{v} \cdot \vec{\sigma}$ is Hermitian, $\ket{\lambda_1}$ and $\ket{\lambda_{-1}}$ are orthonormal vector ($\because $ Exercise 2.22).
+		Let $\ket{\psi} \in \mathds{C}^2$ be an arbitrary state. $\ket{\psi}$ can be written as
+		\begin{equation}
+\begin{aligned}
+			\ket{\psi} = \alpha \ket{\lambda_1} + \beta \ket{\lambda_{\pm 1}} ~~(|\alpha|^2 + |\beta|^2 = 1, \alpha, \beta \in \mathds{C}).
+		\end{aligned}
+\end{equation}
+		
+		\begin{equation}
+\begin{aligned}
+			\braket{\psi | (P_{\pm} - \kb{\lambda_\pm})| \psi}
+			%		&= \braket{\psi | \left(\frac{1}{2} (I \pm \vec{v} \cdot \vec{\sigma}) - \kb{\lambda_\pm}\right)| \psi}\\
+			&= \braket{\psi | P_\pm | \psi} - \braket{\psi | \lambda_\pm} \braket{\lambda_\pm | \psi}.\\
+			\braket{\psi | P_\pm | \psi} &= \braket{\psi | \frac{1}{2}(I \pm \vec{v} \cdot \vec{\sigma}) | \psi}\\
+			&= \frac{1}{2} \pm \frac{1}{2} \braket{\psi | \vec{v} \cdot \vec{\sigma})| \psi}\\
+			&= \frac{1}{2} \pm \frac{1}{2} (|\alpha|^2 - |\beta|^2)\\
+			&= \frac{1}{2} \pm \frac{1}{2} (2|\alpha|^2 - 1) ~~~(\because |\alpha|^2 + |\beta|^2 = 1)\\
+			\braket{\psi | \lambda_1} \braket{\lambda_1 | \psi} &= |\alpha|^2\\
+			\braket{\psi | \lambda_{-1}} \braket{\lambda_{-1}| \psi} &= |\beta|^2 = 1  - |\alpha|^2
+		\end{aligned}
+\end{equation}
+		
+		Therefore $\braket{\psi | (P_\pm - \kb{\lambda_{\pm 1}})| \psi} = 0$ for all $\ket{\psi} \in \mathds{C}^2$.
+		Thus $P_\pm = \kb{\lambda_{\pm 1}}$.
+	\end{proof}
+	
+	\Textbf{2.61}
+	\begin{equation}
+\begin{aligned}
+		\braket{\lambda_1 | 0} \braket{0 | \lambda_1} &= \braket{0 | \lambda_1} \braket{\lambda_1 | 0}\\
+		&= \braket{0 | \frac{1}{2} ( I + \vec{v} \cdot \vec{\sigma} ) | 0}\\
+		&= \frac{1}{2} (1 + v_3)
+	\end{aligned}
+\end{equation}
+	
+	Post-measurement state is
+	\begin{equation}
+\begin{aligned}
+		\frac{\ket{\lambda_1} \braket{\lambda_1 | 0}}{ \sqrt{\braket{0 | \lambda_1} \braket{\lambda_1 | 0}} } &= \frac{1}{\sqrt{\frac{1}{2} (1 + v_3)}}
+		\cdot \frac{1}{2}
+		\begin{bmatrix}
+			1 + v_3 \\
+			v_1 + iv_2
+		\end{bmatrix} \\
+		&= \sqrt{ \frac{1}{2}  (1 + v_3) } \begin{bmatrix}
+			1 \\
+			\frac{v_1 + iv_2}{1+v_3}
+		\end{bmatrix} \\
+		&=  \sqrt{ \frac{1 + v_3}{2} } \begin{bmatrix}
+			1 \\
+			\frac{1 - v_3}{v_1 - iv_2}
+		\end{bmatrix} \\
+		&= \ket{\lambda_1}.
+	\end{aligned}
+\end{equation}
+	
+	
+	
+	\Textbf{2.62}
+	
+	Suppose $M_m$ is a measurement operator.
+	From the assumption, $E_m = M_m^\dagger M_m = M_m$.
+	
+	Then
+	\begin{equation}
+\begin{aligned}
+		\braket{\psi | E_m | \psi} = \braket{\psi | M_m | \psi} \geq 0.
+	\end{aligned}
+\end{equation}
+	for all $\ket{\psi}$.
+	
+	Since $M_m$ is positive operator, $M_m$ is Hermitian.
+	Therefore,
+	\begin{equation}
+\begin{aligned}
+		E_m = M_m^\dagger M_m = M_m M_m = M_m^2 = M_m.
+	\end{aligned}
+\end{equation}
+	
+	Thus the measurement is a projective measurement.
+	
+	
+	
+	\Textbf{2.63}
+	\begin{equation}
+\begin{aligned}
+		M_m^\dagger M_m &= \sqrt{E_m} U_m^\dagger U_m \sqrt{E_m}\\
+		&= \sqrt{E_m} I \sqrt{E_m}\\
+		&= E_m.
+	\end{aligned}
+\end{equation}
+	
+	Since $E_m$ is POVM,  for arbitrary  unitary $U$, $M_m^\dagger M_m$ is POVM.
+	
+	
+	
+	\Textbf{2.64}
+	Read following paper:
+	\begin{itemize}
+		\item Lu-Ming Duan, Guang-Can Guo.  Probabilistic cloning and identification of linearly independent quantum states. Phys. Rev. Lett.,80:4999-5002, 1998. arXiv:quant-ph/9804064\\
+		\url{https://journals.aps.org/prl/abstract/10.1103/PhysRevLett.80.4999}\\
+		\url{https://arxiv.org/abs/quant-ph/9804064}
+		%
+		\item Stephen M. Barnett, Sarah Croke, Quantum state discrimination, arXiv:0810.1970 [quant-ph]\\
+		\url{https://arxiv.org/abs/0810.1970}\\
+		\url{https://www.osapublishing.org/DirectPDFAccess/67EF4200-CBD2-8E68-1979E37886263936_176580/aop-1-2-238.pdf}
+	\end{itemize}
+	
+	
+	\Textbf{2.65}
+	\begin{equation}
+\begin{aligned}
+		\ket{+} \equiv \frac{\ket{0} + \ket{1}}{\sqrt{2}}, ~~~ \ket{-} \equiv \frac{\ket{0} - \ket{1}}{\sqrt{2}}
+	\end{aligned}
+\end{equation}
+	
+	
+	\Textbf{2.66}
+	\begin{equation}
+\begin{aligned}
+		X_1 Z_2 \left(\frac{\ket{00} + \ket{11}}{\sqrt{2}} \right) = \frac{\ket{10} - \ket{01}}{\sqrt{2}}
+	\end{aligned}
+\end{equation}
+	
+	
+	\begin{equation}
+\begin{aligned}
+		\braket{X_1 Z_2} = \left(\frac{\bra{00} + \bra{11}}{\sqrt{2}} \right) X_1 Z_2 \left(\frac{\ket{00} + \ket{11}}{\sqrt{2}} \right)
+		= \frac{\bra{00} + \bra{11}}{\sqrt{2}}  \cdot \frac{\ket{10} - \ket{01}}{\sqrt{2}}
+		= 0
+	\end{aligned}
+\end{equation}
+	
+	
+	
+	\Textbf{2.67}
+	
+	Suppose $W^\perp$ is the orthogonal complement of $W$. Then $V = W \oplus W^\perp$.
+	Let $\ket{w_i},\ket{w_j'},\ket{u_j'}$ be orthonormal bases for $W$, $W^\perp$, $\left( \mathrm{image}(U) \right)^\perp$, respectively.
+	
+	% Define $U'$ as $U'|_W\ket{w_i} = U\ket{w_i} (= \ket{u_i})$ and $U'|_{W^\perp}\ket{w_j'} = \ket{u_j'}$
+	Define $U': V \rightarrow V$ as $U' = \sum_i \kbt{u_i}{w_i} + \sum_j \kbt{u_j'}{w_j'}$,
+	where $\ket{u_i} = U \ket{w_i}$.
+	
+	
+	Now
+	\begin{equation}
+\begin{aligned}
+		(U')^\dagger U' &= \left( \sum_{i = 1}^{\dim W} \kbt{w_i}{u_i} + \sum_{j = 1}^{\dim W^\perp} \kbt{w_j'}{u_j'} \right)  \left( \sum_i \kbt{u_i}{w_i} + \sum_j \kbt{u_j'}{w_j'} \right)\\
+		&= \sum_i \kb{w_i} + \sum_j \kb{w_j'} = I
+	\end{aligned}
+\end{equation}
+	%
+	and
+	%
+	\begin{equation}
+\begin{aligned}
+		U' (U')^\dagger &= \left( \sum_i \kbt{u_i}{w_i} + \sum_j \kbt{u_j'}{w_j'} \right) \left( \sum_i \kbt{w_i}{u_i} + \sum_j \kbt{w_j'}{u_j'} \right)\\
+		&= \sum_i \kb{u_i} + \sum_j \kb{u_j'} = I.
+	\end{aligned}
+\end{equation}
+	%
+	Thus $U'$ is an unitary operator.
+	Moreover, for all $\ket{w} \in W$,
+	\begin{equation}
+\begin{aligned}
+		U' \ket{w} &= \left( \sum_i \kbt{u_i}{w_i} + \sum_j \kbt{u_j'}{w_j'} \right) \ket{w}\\
+		&= \sum_i \ket{u_i} \braket{w_i | w} + \sum_j \ket{u_j'} \braket{w_j' | w}\\
+		&= \sum_i \ket{u_i} \braket{w_i | w}  ~~~(\because \ket{w_j'} \perp \ket{w})\\
+		&= \sum_i U \ket{w_i} \braket{w_i | w}\\
+		&= U \ket{w}.
+	\end{aligned}
+\end{equation}
+	%
+	Therefore $U'$ is an extension of $U$.
+	
+	
+	\Textbf{2.68}
+	
+	$\ket{\psi} = \frac{\ket{00} + \ket{11}}{\sqrt{2}}$.
+	
+	Suppose $\ket{a} = a_0 \ket{0}  + a_1\ket{1}$ and $\ket{b} = b_0 \ket{0}  + b_1\ket{1}$.
+	%
+	\begin{equation}
+\begin{aligned}
+		\ket{a} \ket{b} = a_0 b_0 \ket{00} + a_0 b_1 \ket{01} + a_1 b_0 \ket{10} + a_1 b_1 \ket{11}.
+	\end{aligned}
+\end{equation}
+	
+	If $\ket{\psi} = \ket{a} \ket{b}$, then $a_0 b_0 = 1,~ a_0 b_1=0,~ a_1 b_0 = 0,~ a_1 b_1 = 1$ since $\{\ket{ij}\}$ is an orthonormal basis.
+	
+	If $a_0 b_1 = 0$, then $a_0 = 0$ or $b_1 = 0$.
+	
+	When $a_0 = 0$ , this is contradiction to $a_0 b_0 = 1$.
+	When $b_1 = 0$ , this is contradiction to $a_1 b_1 = 1$.
+	
+	Thus $\ket{\psi} \neq \ket{a} \ket{b}$.
+	
+	
+	\Textbf{2.69}
+	Define Bell states as follows.
+	\begin{equation}
+\begin{aligned}
+		\ket{\psi_1} &\equiv \frac{\ket{00} + \ket{11}}{\sqrt{2}} = \frac{1}{\sqrt{2}} \begin{bmatrix}
+			1 \\
+			0 \\
+			0 \\
+			1
+		\end{bmatrix} \\
+		\ket{\psi_2} &\equiv \frac{\ket{00} - \ket{11}}{\sqrt{2}} = \frac{1}{\sqrt{2}} \begin{bmatrix}
+			1 \\
+			0 \\
+			0 \\
+			-1
+		\end{bmatrix} \\
+		\ket{\psi_3} &\equiv \frac{\ket{01} + \ket{10}}{\sqrt{2}} = \frac{1}{\sqrt{2}} \begin{bmatrix}
+			0 \\
+			1 \\
+			1 \\
+			0
+		\end{bmatrix} \\
+		\ket{\psi_4} &\equiv \frac{\ket{01} - \ket{10}}{\sqrt{2}} = \frac{1}{\sqrt{2}} \begin{bmatrix}
+			0 \\
+			1 \\
+			-1 \\
+			0
+		\end{bmatrix} \\
+	\end{aligned}
+\end{equation}
+	
+	First, we prove $\{\ket{\psi_i} \}$ is a linearly independent basis.
+	\begin{equation}
+\begin{aligned}
+		&a_1 \ket{\psi_1} + a_2 \ket{\psi_2} + a_3 \ket{\psi_3} + a_4 \ket{\psi_4} = 0\\
+		&\therefore \frac{1}{\sqrt{2}} \begin{bmatrix}
+			a_1 + a_2 \\
+			a_3 + a_4 \\
+			a_3 - a_4 \\
+			a_1 - a_2
+		\end{bmatrix} = 0
+	\end{aligned}
+\end{equation}
+	\begin{subnumcases}
+		\therefore {}
+		a_1 + a_2 = 0& \nonumber \\
+		a_3+ a_4 = 0& \nonumber \\
+		a_3 - a_4 = 0& \nonumber \\
+		a_1 - a_2 = 0& \nonumber
+	\end{subnumcases}
+	\begin{equation}
+\begin{aligned}
+		\therefore a_1 = a_2 = a_3 = a_4 = 0
+	\end{aligned}
+\end{equation}
+	Thus $\{\ket{\psi_i}\}$ is a linearly independent basis.
+	
+	Moreover $\norm{\ket{\psi_i}} = 1$ and $\braket{\psi_i | \psi_j} = \delta_{ij}$ for $i,j = 1, 2, 3, 4$.
+	Therefore $\{\ket{\psi_i}\}$ forms an orthonormal basis.
+	
+	
+	
+	
+	\Textbf{2.70}
+	
+	For any Bell states we get $\braket{\psi_i | E \otimes I | \psi_i} = \frac{1}{2} (\braket{0|E|0} + \braket{1|E|1})$.
+	
+	Suppose Eve measures the qubit Alice sent by measurement operators $M_m$.
+	The probability that Eve gets result $m$ is $p_i(m) = \braket{\psi_i | M_m^\dagger M_m \otimes I | \psi_i}$.
+	Since $M ^\dagger_m M_m$ is positive, $p_i(m)$ are same values for all $\ket{\psi_i}$.
+	Thus Eve can't distinguish Bell states.
+	
+	
+	
+	
+	\Textbf{2.71}
+	
+	From spectral decomposition,
+	\begin{equation}
+\begin{aligned}
+		\rho &= \sum_i p_i \kb{\psi_i}, ~~ p_i \geq 0, ~~ \sum_i p_i = 1.\\
+		\rho^2 &= \sum_{i,j} p_i p_j \ket{i}\braket{i|j}\bra{j}\\
+		&= \sum_{i,j} p_i p_j \kbt{i}{j}\delta_{ij}\\
+		&= \sum_i p_i^2 \kb{i}
+	\end{aligned}
+\end{equation}
+	
+	\begin{equation}
+\begin{aligned}
+		\Tr (\rho^2) &= \Tr \left(\sum_i p_i^2 \kb{i}\right)
+		= \sum_i p_i^2 \Tr(\kb{i})
+		= \sum_i p_i^2 \braket{i|i}
+		= \sum_i p_i^2
+		\leq \sum_i p_i = 1~~~ (\because p_i^2 \leq p_i)
+	\end{aligned}
+\end{equation}
+	
+	Suppose $\Tr (\rho^2) = 1$. Then $\sum_i p_i^2 = 1$.
+	Since $p_i^2 < p_i$ for $0 < p_i < 1$,
+	only single $p_i$ should be 1 and otherwise have to  vanish.
+	Therefore $\rho = \kb{\psi_i}$. It is a pure state.
+	
+	Conversely if $\rho$ is pure, then $\rho = \kb{\psi}$.
+	\begin{equation}
+\begin{aligned}
+		\Tr (\rho^2) = \Tr (\ket{\psi}\braket{\psi | \psi} \bra{\psi}) = \Tr (\kb{\psi}) = \braket{\psi | \psi} = 1.
+	\end{aligned}
+\end{equation}
+	
+	
+	
+	\Textbf{2.72}
+	
+	(1) Since density matrix is Hermitian, matrix representation is
+	$\rho = \begin{bmatrix}
+		a & b \\ b^* & d
+	\end{bmatrix}$,
+	$a, d \in \mathds{R}$ and $b \in \mathds{C}$ w.r.t. standard basis.
+	Because $\rho$ is density matrix, $\Tr (\rho) = a+d = 1$.
+	
+	Define $a = (1+r_3)/2$, $d = (1-r_3)/2$ and $b = (r_1 - ir_2)/2$, $(r_i \in \mathds{R})$.
+	
+	In this case,
+	\begin{equation}
+\begin{aligned}
+		\rho = \begin{bmatrix}
+			a & b \\ b^* & d
+		\end{bmatrix}
+		=
+		\frac{1}{2} \begin{bmatrix}
+			1+r_3 & r_1 - ir_2 \\
+			r_1 + ir_2 & 1 - r_3
+		\end{bmatrix}
+		=
+		\frac{1}{2} (I + \vec{r} \cdot \vec{\sigma}).
+	\end{aligned}
+\end{equation}
+	Thus for arbitrary density matrix $\rho$ can be written as $\rho = \frac{1}{2} (I + \vec{r} \cdot \vec{\sigma})$.
+	
+	Next, we derive the condition that $\rho$ is positive.
+	
+	If $\rho$ is positive, all eigenvalues of $\rho$ should be non-negative.
+	\begin{equation}
+\begin{aligned}
+		\det (\rho - \lambda I) &= (a-  \lambda) (b - \lambda) - |b|^2 = \lambda^2 - (a+d)\lambda + ad - |b^2| = 0\\
+		\lambda &= \frac{(a+d) \pm \sqrt{(a+d)^2 - 4 (ad - |b|^2)}}{2}\\
+		&= \frac{1 \pm \sqrt{1 - 4 \left(\frac{1 - r_3^2}{4} - \frac{r_1^2 + r_2^2}{4} \right)}}{2}\\
+		&= \frac{1 \pm \sqrt{1 - (1 - r_1^2 - r_2^2 - r_3^2)}}{2}\\
+		&= \frac{1 \pm \sqrt{|\vec{r}|^2}}{2}\\
+		&= \frac{1 \pm |\vec{r}|}{2}
+	\end{aligned}
+\end{equation}
+	
+	Since $\rho$ is positive, $\frac{1 - |\vec{r}|}{2} \geq 0 \rightarrow |\vec{r}| \leq 1$.
+	
+	Therefore an arbitrary density matrix for a mixed state qubit is written as $\rho = \frac{1}{2} (I + \vec{r} \cdot \vec{\sigma})$.
+	
+	\vspace{5mm}
+	(2)
+	
+	$\rho = I / 2 \rightarrow \vec{r}  = 0$. Thus  $\rho = I / 2$ corresponds to the origin of Bloch sphere.
+	
+	\vspace{5mm}
+	(3)
+	
+	\begin{equation}
+\begin{aligned}
+		\rho^2 &= \frac{1}{2} (I + \vec{r} \cdot \vec{\sigma})~ \frac{1}{2} (I + \vec{r} \cdot \vec{\sigma})\\
+		&= \frac{1}{4} \left[ I + 2 \vec{r}\cdot \vec{\sigma} + \sum_{j,k}r_j r_k \left(\delta_{jk} I + i \sum_{l=1}^3 \epsilon_{jkl}\sigma_l \right)  \right]\\
+		&= \frac{1}{4} \left(I + 2 \vec{r}\cdot \vec{\sigma} + |\vec{r}|^2 I \right)\\
+		\Tr (\rho^2) &= \frac{1}{4} (2 + 2|\vec{r}|^2)
+	\end{aligned}
+\end{equation}
+	
+	If $\rho$ is pure, then $\Tr (\rho^2) = 1$.
+	\begin{equation}
+\begin{aligned}
+		1 =  \Tr (\rho^2) = \frac{1}{4} (2 + 2|\vec{r}|^2)\\
+		\therefore |\vec{r}| = 1.
+	\end{aligned}
+\end{equation}
+	
+	Conversely, if $|\vec{r}| = 1$, then $\Tr (\rho^2) = \frac{1}{4} (2 + 2|\vec{r}|^2) = 1$. Therefore $\rho$ is pure.
+	
+	
+	
+	
+	\Textbf{2.73}
+	
+		\Textbf{Theorem 2.6}
+		%
+		\begin{equation}
+\begin{aligned}
+			\rho = \sum_i p_i \kb{\psi_i}
+			= \sum_i \kb{\tilde{\psi_i}}
+			= \sum_j \kb{\tilde{\varphi}_j}
+			= \sum_j q_j \kb{\varphi_j}
+			~~ \Leftrightarrow ~~
+			\ket{\tilde{\psi}_i} = \sum_j u_{ij} \ket{\tilde{\varphi}_j}
+		\end{aligned}
+\end{equation}
+		where $u$ is unitary.
+		
+		The-transformation in theorem 2.6, $\ket{\tilde{\psi}_i} = \sum_j u_{ij} \ket{\tilde{\varphi}_j}$, corresponds to
+		\begin{equation}
+\begin{aligned}
+			\left[ \ket{\tilde{\psi}_1} \cdots \ket{\tilde{\psi}_k} \right] = \Big[ \ket{\tilde{\varphi}_1} \cdots \ket{\tilde{\varphi}_k} \Big] U^T
+		\end{aligned}
+\end{equation}
+		where $k = \mathrm{rank} (\mathcal{\rho})$.
+\begin{equation}
+			\begin{aligned}
+		\sum_i \kb{\tilde{\psi_i}} &= \left[ \ket{\tilde{\psi}_1} \cdots \ket{\tilde{\psi}_k} \right]
+		\begin{bmatrix}
+			\bra{\tilde{\psi_1}}\\
+			\vdots\\
+			\bra{\tilde{\psi_k}}
+		\end{bmatrix}\\
+		&= \Big[ \ket{\tilde{\varphi}_1} \cdots \ket{\tilde{\varphi}_k} \Big] U^T
+		U^* \begin{bmatrix}
+			\bra{\tilde{\varphi}_1}\\
+			\vdots\\
+			\bra{\tilde{\varphi}_k}
+		\end{bmatrix}\\
+		&= \Big[ \ket{\tilde{\varphi}_1} \cdots \ket{\tilde{\varphi}_k} \Big]
+		\begin{bmatrix}
+			\bra{\tilde{\varphi}_1}\\
+			\vdots\\
+			\bra{\tilde{\varphi}_k}
+		\end{bmatrix}\\
+		&= \sum_j \kb{\tilde{\varphi}_j}.
+	\end{aligned}
+\end{equation}
+	
+	
+	From spectral theorem, density matrix $\rho$ is decomposed as $\rho = \sum_{k=1}^{d} \lambda_k \kb{k}$ where $d = \dim \mathcal{H}$.
+	Without loss of generality, we can assume $p_k > 0$ for $k = 1 \cdots , l$ where $l = \mathrm{rank} (\rho)$ and $p_k = 0$ for $k = l+1, \cdots, d$.
+	Thus $\rho = \sum_{k=1}^{l} p_k \kb{k} = \sum_{k=1}^{l} \kb{\tilde{k}}$, where $\ket{\tilde{k}} = \sqrt{\lambda_k} \ket{k}$.
+	
+	Suppose $\ket{\psi_i}$ is a state in support $\rho$. Then
+	\begin{equation}
+\begin{aligned}
+		\ket{\psi_i} = \sum_{k=1}^l c_{ik} \ket{k}, ~~ \sum_k |c_{ik}|^2 = 1.
+	\end{aligned}
+\end{equation}
+	
+	Define $\displaystyle p_i = \frac{1}{\sum_k \frac{|c_{ik}|^2}{\lambda_k} }$ and $\displaystyle u_{ik} = \frac{\sqrt{p_i} c_{ik}}{\sqrt{\lambda_k}}$.
+	
+	Now
+	\begin{equation}
+\begin{aligned}
+		\sum_k |u_{ik}|^2 = \sum_k \frac{p_i | c_{ik} |^2 }{\lambda_k} = p_i \sum_k \frac{| c_{ik} |^2 }{\lambda_k} = 1.
+	\end{aligned}
+\end{equation}
+	
+	Next prepare an unitary operator
+	\footnote{By Gram-Schmidt procedure construct an orthonormal basis $\{\boldsymbol{u}_j\}$ (row vector) with $\boldsymbol{u}_i = [u_{i1} \cdots u_{ik} \cdots u_{il}]$. Then define unitary $U = \begin{bmatrix}
+			\boldsymbol{u}_1 \\ 
+			\vdots \\ 
+			\boldsymbol{u}_i \\ 
+			\vdots \\ 
+			\boldsymbol{u}_l
+		\end{bmatrix}$.}
+	such that $i$th row of $U$ is $[u_{i1} \cdots u_{ik} \cdots u_{il}]$.
+	Then we can define another ensemble such that
+	\begin{equation}
+\begin{aligned}
+		\Big[  \ket{\tilde{\psi}_1} \cdots  \ket{\tilde{\psi}_i} \cdots \ket{\tilde{\psi}_l}\Big] = \Big[ \ket{\tilde{k}_1} \cdots \ket{\tilde{k}_l} \Big] U^T
+	\end{aligned}
+\end{equation}
+	where $\ket{\tilde{\psi_i}} = \sqrt{p_i} \ket{\psi_i}$.
+	From theorem 2.6,
+	\begin{equation}
+\begin{aligned}
+		\rho = \sum_k \kb{\tilde{k}} = \sum_k \kb{\tilde{\psi}_k}.
+	\end{aligned}
+\end{equation}
+	
+	Therefore we can obtain a minimal ensemble for $\rho$ that contains $\ket{\psi_i}$.
+	
+	Moreover since $\rho^{-1} = \sum_k \frac{1}{\lambda_k} \kb{k}$,
+	\begin{equation}
+\begin{aligned}
+		\braket{\psi_i | \rho^{-1} | \psi_i} = \sum_k \frac{1}{\lambda_k} \braket{\psi_i | k} \hspace{-1mm} \braket{k | \psi_i} = \sum_k \frac{|c_{ik}|^2}{\lambda_k} = \frac{1}{p_i}.
+	\end{aligned}
+\end{equation}
+	
+	Hence, $ \frac{1}{\braket{\psi_i | \rho^{-1} | \psi_i}} = p_i $.
+	
+	
+	\Textbf{2.74}
+	\begin{equation}
+\begin{aligned}
+		\rho_{AB} &= \kb{a}_A \otimes \kb{b}_B\\
+		\rho_A &= \Tr_{B} \rho_{AB} = \kb{a} \Tr (\kb{b}) = \kb{a}\\
+		\Tr (\rho_A^2) &= 1
+	\end{aligned}
+\end{equation}
+	Thus $\rho_A$ is pure.
+	
+	
+	\Textbf{2.75}
+	Define $\ket{\Phi_\pm} = \frac{1}{\sqrt{2}} (\ket{00} \pm \ket{11})$ and $\ket{\Psi_\pm} = \frac{1}{\sqrt{2}} (\ket{01} \pm \ket{10})$.
+	\begin{equation}
+\begin{aligned}
+		\kb{\Phi_\pm}_{AB} &= \frac{1}{2} (\kb{00} \pm \kbt{00}{11} \pm \kbt{11}{00} + \kb{11})\\
+		\Tr_B (\kb{\Phi_\pm}_{AB}) &= \frac{1}{2} (\kb{0} + \kb{1}) = \frac{I}{2}\\
+		%
+		\kb{\Psi_\pm} &= \frac{1}{2} (\kb{01} \pm \kbt{01}{10} \pm \kbt{10}{01} + \kb{10})\\
+		\Tr_B (\kb{\Psi_\pm}) &= \frac{1}{2} (\kb{0} + \kb{1}) = \frac{I}{2}
+	\end{aligned}
+\end{equation}
+	
+	
+	\Textbf{2.76}
+	
+	Unsolved. \sout{I think the polar decomposition can only apply to square matrix $A$, not arbitrary linear operators.
+		Suppose $A$ is $m \times n$ matrix. Then size of $A^\dagger A$ is $n \times n$. Thus the size of $U$ should be $m \times n$.
+		Maybe $U$ is isometry, but I think it is not unitary.}
+	
+	I misunderstand linear operator.
+	\begin{quote}
+		Quoted from "Advanced Liner Algebra" by Steven Roman, ISBN 0387247661.
+		
+		A linear transformation $\tau : V \rightarrow V$ is called a \textbf{linear operator} on $V$.\footnote{According to Roman, some authors use the term linear operator for any linear transformation from $V$ to $W$.}
+	\end{quote}
+	Thus coordinate matrices of linear operator are square matrices. And Nielsen and Chaung say at Theorem 2.3, "Let $A$ be a linear operator on a vector space $V$." Therefore $A$ is a linear transformation such that $A : V \rightarrow V$.
+	
+	\Textbf{2.77}
+	\begin{equation}
+\begin{aligned}
+		\ket{\psi}  &=  \ket{0}  \ket{\Phi_+}\\
+		&= \ket{0} \left[\frac{1}{\sqrt{2}}(\ket{00} + \ket{11})\right]\\
+		&= (\alpha \ket{\phi_0} + \beta \ket{\phi_1})  \left[\frac{1}{\sqrt{2}}(\ket{\phi_0 \phi_0} + \ket{\phi_1 \phi_1})\right]\\
+	\end{aligned}
+\end{equation}
+	where $\ket{\phi_i}$ are arbitrary orthonormal states and $\alpha, \beta \in \mathds{C}$.
+	We cannot vanish cross term. Therefore $\ket{\psi}$ cannot be written as $\ket{\psi} = \sum_i \lambda_i \ket{i}_A \ket{i}_B \ket{i}_C$.
+	
+	
+	\Textbf{2.78}
+	\begin{proof}
+		Former part.
+		
+		If $\ket{\psi}$ is product, then there exist a state $\ket{\phi_A}$ for system $A$, and a state $\ket{\phi_B}$ for system $B$ such that
+		$\ket{\psi} = \ket{\phi_A} \ket{\phi_B}$.
+		
+		Obviously, this Schmidt number is  1.
+		
+		Conversely, if Schmidt number is 1, the state is written as $\ket{\psi} = \ket{\phi_A} \ket{\phi_B}$.
+		Hence this is a product state.
+	\end{proof}
+	
+	
+	\begin{proof}
+		Later part.
+		
+		($\Rightarrow$) Proved by exercise 2.74.
+		
+		($\Leftarrow$) Let a pure state be  $\ket{\psi} = \sum_i \lambda_i \ket{i_A} \ket{i_B}$. Then $\rho_A = \Tr_B (\kb{\psi}) = \sum_i \lambda_i^2 \kb{i}$.
+		If $\rho_A$ is a pure state, then $\lambda_j = 1$ and otherwise 0 for some $j$.
+		It follows that  $\ket{\psi_j} = \ket{j_A} \ket{j_B}$. Thus $\ket{\psi}$ is a product state.
+	\end{proof}
+	
+	
+	\Textbf{2.79}
+	
+		Procedure of Schmidt decomposition.
+		
+		Goal: $\ket{\psi} = \sum_{i} \sqrt{\lambda_i} \ket{i_A} \ket{i_B}$
+		
+		\begin{itemize}
+			\item Diagonalize reduced density matrix $\rho_A = \sum_i \lambda_i \kb{i_A}$.
+			\item Derive $\ket{i_B}$, $\displaystyle  \ket{i_B} = \frac{(I \otimes \bra{i_A}) \ket{\psi}}{\sqrt{\lambda_i}}$
+			\item Construct $\ket{\psi}$.
+		\end{itemize}
+		
+	
+	
+	
+	(i)
+	\begin{equation}
+\begin{aligned}
+		\frac{1}{\sqrt{2}} (\ket{00} + \ket{11}) \text{ This is already decomposed.}
+	\end{aligned}
+\end{equation}
+	
+	
+	(ii)
+	\begin{equation}
+\begin{aligned}
+		\frac{\ket{00}+ \ket{01} + \ket{10} + \ket{11}}{2} = \left( \frac{\ket{0} + \ket{1}}{\sqrt{2}}  \right) \otimes \left( \frac{\ket{0} + \ket{1}}{\sqrt{2}}  \right) = \ket{\psi} \ket{\psi} \text{ where } \ket{\psi} = \frac{\ket{0} + \ket{1}}{\sqrt{2}}
+	\end{aligned}
+\end{equation}
+	
+	
+	
+	(iii)
+	\begin{equation}
+\begin{aligned}
+		\ket{\psi}_{AB} &= \frac{1}{\sqrt{3}} (\ket{00} + \ket{01} + \ket{10})\\
+		\rho_{AB} &= \kb{\psi}_{AB}
+	\end{aligned}
+\end{equation}
+	%
+	%
+	%
+	\begin{equation}
+\begin{aligned}
+		\rho_A &= \Tr_B (\rho_{AB}) = \frac{1}{3} \left( 2\kb{0} + \kbt{0}{1} + \kbt{1}{0} + \kb{1} \right)\\
+		\det (\rho_A - \lambda I) &= \left( \frac{2}{3} - \lambda \right) \left( \frac{1}{3} - \lambda \right) - \frac{1}{9} = 0\\
+		\lambda^2 &- \lambda + \frac{1}{9} = 0\\
+		\lambda &= \frac{1 \pm \sqrt{5} / 3}{2} = \frac{3 \pm \sqrt{5}}{6}
+	\end{aligned}
+\end{equation}
+	
+	
+	
+	Eigenvector with eigenvalue $\displaystyle \lambda_0 \equiv \frac{3 + \sqrt{5}}{6}$ is $\displaystyle \ket{\lambda_0} \equiv \frac{1}{\sqrt{\frac{5 + \sqrt{5}}{2}}} \begin{bmatrix}
+		\frac{1 + \sqrt{5}}{2} \\
+		1
+	\end{bmatrix}$ .
+	
+	Eigenvector with eigenvalue $\displaystyle \lambda_1 \equiv \frac{3 - \sqrt{5}}{6}$ is $\displaystyle \ket{\lambda_1} \equiv \frac{1}{\sqrt{\frac{5 - \sqrt{5}}{2}}} \begin{bmatrix}
+		\frac{1 - \sqrt{5}}{2} \\
+		1
+	\end{bmatrix} $.
+	
+	\begin{equation}
+\begin{aligned}
+		\rho_A = \lambda_0 \kb{\lambda_0} + \lambda_1 \kb{\lambda_1}.
+	\end{aligned}
+\end{equation}
+	
+	
+	\begin{equation}
+\begin{aligned}
+		\ket{a_0} \equiv \frac{(I \otimes \bra{\lambda_0}) \ket{\psi} }{\sqrt{\lambda_0}}\\
+		\ket{a_1} \equiv \frac{(I \otimes \bra{\lambda_1}) \ket{\psi} }{\sqrt{\lambda_1}}
+	\end{aligned}
+\end{equation}
+	
+	Then
+	\begin{equation}
+\begin{aligned}
+		\ket{\psi} = \sum_{i=0}^1 \sqrt{\lambda_i} \ket{a_i} \ket{\lambda_i}.
+	\end{aligned}
+\end{equation}
+	
+	
+	(It's too tiresome to calculate $\ket{a_i}$)
+	
+	
+	
+	\Textbf{2.80}
+	
+	Let $\ket{\psi} = \sum_i \lambda_i \ket{\psi_i}_A \ket{\psi_i}_B$ and $\ket{\varphi} = \sum_i \lambda_i \ket{\varphi_i}_A \ket{\varphi_i}_B$.
+	
+	Define $U = \sum_i \kbt{\psi_j}{\varphi_j}_A$ and $V = \sum_j \kbt{\psi_j}{\varphi_j}_B$.
+	
+	Then
+	\begin{equation}
+\begin{aligned}
+		(U \otimes V) \ket{\varphi} &= \sum_i \lambda_i U \ket{\varphi_i}_A  V \ket{\varphi_i}_B\\
+		&= \sum_i \lambda_i \ket{\psi_i}_A \ket{\psi_i}_B\\
+		&= \ket{\psi}.
+	\end{aligned}
+\end{equation}
+	
+	
+	\Textbf{2.81}
+	
+	Let the Schmidt decomposition of $\ket{AR_1}$ be $\ket{AR_1} = \sum_i \sqrt{p_i} \ket{\psi_i^A} \ket{\psi_i^R}$ and
+	let $\ket{AR_2} = \sum_i \sqrt{q_i} \ket{\phi_i^A} \ket{\phi_i^R}$.
+	
+	Suppose $\rho^A$ has orthonormal decomposition $\rho^A = \sum_i p_i \kb{i}$.
+	
+	Since $\ket{AR_1}$ and $\ket{AR_2}$ are purifications of the $\rho^A$, we have
+	 \begin{equation}
+		\begin{aligned}
+		     \ket{AR_1} &= \sum_i \sqrt{p_i} \ket{i} \ket{\psi_i}\\
+		     \ket{AR_2} &= \sum_i \sqrt{p_i} \ket{i} \ket{\phi_i}
+		 \end{aligned}
+		\end{equation}
+	 where $\ket{\psi_i}$ and $\ket{\phi_i}$ are orthonormal bases on system $R$.
+	%
+	\begin{equation}
+\begin{aligned}
+		\Tr_R (\kb{AR_1}) = \Tr_R (\kb{AR_2}) = \rho^A\\
+		\therefore \sum_i p_i \kb{\psi_i^A} = \sum_i q_i \kb{\phi_i^A} = \sum_i \lambda_i \kb{i}.
+	\end{aligned}
+\end{equation}
+	
+	The $\ket{i}$, $\ket{\psi_i^A}$, and $\ket{\psi_i^A}$ are orthonormal bases and they are eigenvectors of $\rho^A$.
+	Hence without loss of generality, we can consider
+	\begin{equation}
+\begin{aligned}
+		\lambda_i = p_i = q_i \text{ and } \ket{i} = \ket{\psi_i^A} = \ket{\phi_i^A}.
+	\end{aligned}
+\end{equation}
+	%
+	Then
+	\begin{equation}
+\begin{aligned}
+		\ket{AR_1} = \sum_i \lambda_i \ket{i} \ket{\psi_i^R}\\
+		\ket{AR_2} = \sum_i \lambda_i \ket{i} \ket{\phi_i^R}
+	\end{aligned}
+\end{equation}
+	Since $\ket{AR_1}$ and $\ket{AR_2}$ have same Schmidt numbers, there are two unitary operators $U$ and $V$ such that
+	$\ket{AR_1} = (U \otimes V) \ket{AR_2}$ from exercise 2.80.
+	
+	Suppose $U = I$ and $V = \sum_i \kbt{\psi_i^R}{\phi_i^R}$.
+	Then
+	\begin{equation}
+\begin{aligned}
+		\left(I \otimes \sum_j \kbt{\psi_j^R}{\phi_j^R} \right) \ket{AR_2} &= \sum_i \lambda_i \ket{i} \left( \sum_j \ket{\psi_j^R} \braket{\phi_j^R | \phi_i^R} \right)\\
+		&= \sum_i \lambda_i \ket{i} \ket{\psi_i^R}\\
+		&= \ket{AR_1}.
+	\end{aligned}
+\end{equation}
+	%
+	Therefore there exists a unitary transformation $U_R$ acting on system $R$ such that $\ket{AR_1} = (I \otimes U_R) \ket{AR_2}$.
+	
+	
+	\Textbf{2.82}
+	
+	(1)
+	
+	Let $\ket{\psi} = \sum_i \sqrt{p_i} \ket{\psi_i} \ket{i}$.
+	\begin{equation}
+\begin{aligned}
+		\Tr_R (\kb{\psi})
+		&= \sum_{i,j} \sqrt{p_i} \sqrt{p_j} \kbt{\psi_i}{\psi_j} \Tr_R (\kbt{i}{j})\\
+		&= \sum_{i,j} \sqrt{p_i} \sqrt{p_j} \kbt{\psi_i}{\psi_j} \delta_{ij}\\
+		&= \sum_i p_i \kb{\psi_i} = \rho.
+	\end{aligned}
+\end{equation}
+	Thus $\ket{\psi}$ is a purification of $\rho$.
+	
+	\vspace{5mm}
+	(2)
+	
+	Define the projector $P$ by $P = I \otimes \kb{i}$.
+	The probability we get the result $i$ is
+	\begin{equation}
+\begin{aligned}
+		\Tr \left[ P \kb{\psi}\right] = \braket{\psi | P | \psi} = \braket{\psi | (I \otimes \kb{i}) | \psi} = p_i \braket{\psi_i | \psi_i} = p_i.
+	\end{aligned}
+\end{equation}
+	
+	The post-measurement state is
+	\begin{equation}
+\begin{aligned}
+		\frac{P \ket{\psi}}{\sqrt{p_i}}
+		= \frac{(I \otimes \kb{i}) \ket{\psi}}{\sqrt{p_i}}
+		= \frac{\sqrt{p_i} \ket{\psi_i}\ket{i}}{\sqrt{p_i}} = \ket{\psi_i}\ket{i}.
+	\end{aligned}
+\end{equation}
+	
+	If we only focus on the state on system $A$,
+	\begin{equation}
+\begin{aligned}
+		\Tr_R (\ket{\psi_i} \ket{i}) = \ket{\psi_i}.
+	\end{aligned}
+\end{equation}
+	
+	\vspace{5mm}
+	(3)
+	
+	($\{ \ket{\psi_i} \}$ is not necessary an orthonormal basis.)
+	
+	
+	Suppose $\ket{AR}$ is a purification of $\rho$ and its Schmidt decomposition is $\ket{AR} = \sum_i \sqrt{\lambda_i} \ket{\phi_i^A} \ket{\phi_i^R}$.
+	
+	From assumption
+	\begin{equation}
+\begin{aligned}
+		\Tr_R \left( \kb{AR} \right) = \sum_i \lambda_i \kb{\phi_i^A} = \sum_i p_i \kb{\psi_i}.
+	\end{aligned}
+\end{equation}
+	
+	By theorem 2.6, there exits an unitary matrix $u_{ij}$ such that $\sqrt{\lambda_i}\ket{\phi_i^A} = \sum_j u_{ij} \sqrt{p_j} \ket{\psi_j}$.
+	Then
+	\begin{equation}
+\begin{aligned}
+		\ket{AR} &= \sum_i \left( \sum_j u_{ij} \sqrt{p_j} \ket{\psi_j} \right) \ket{\phi_i^R}\\
+		&= \sum_j \sqrt{p_j} \ket{\psi_j} \otimes\left( \sum_i u_{ij} \ket{\phi_i^R} \right)\\
+		&= \sum_j \sqrt{p_j} \ket{\psi_j} \ket{j}\\
+		&= \sum_i \sqrt{p_i} \ket{\psi_i} \ket{i}
+	\end{aligned}
+\end{equation}
+	where $\ket{i} = \sum_k u_{ki} \ket{\phi_k^R}$.
+	
+	About $\ket{i}$,
+	\begin{equation}
+\begin{aligned}
+		\braket{k | l} &= \sum_{m,n} u_{mk}^* u_{nl} \braket{\phi_m^R | \phi_n^R }\\
+		&= \sum_{m,n} u_{mk}^* u_{nl} \delta_{mn}\\
+		&= \sum_m u_{mk}^* u_{ml}\\
+		&= \delta_{kl}, ~~~(\because u_{ij} \text{ is unitary.})
+	\end{aligned}
+\end{equation}
+	which implies $\ket{j}$ is an orthonormal basis for system $R$.
+	
+	Therefore if we measure system $R$ w.r.t $\ket{j}$, we obtain $j$ with probability $p_j$ and post-measurement state for $A$ is $\ket{\psi_j}$ from (2).
+	Thus for any purification $\ket{AR}$, there exists an orthonormal basis $\ket{i}$ which satisfies the assertion.
+	
+	
+	\Textbf{Problem 2.1}
+	
+	From Exercise 2.35, $\vec{n} \cdot \vec{\sigma}$ is decomposed as
+	\begin{equation}
+\begin{aligned}
+		\vec{n} \cdot \vec{\sigma} &= \kb{\lambda_1} - \kb{\lambda_{-1}}
+	\end{aligned}
+\end{equation}
+	where $\ket{\lambda_{\pm 1}}$ are eigenvector of $\vec{n} \cdot \vec{\sigma}$ with eigenvalues $\pm 1$.
+	
+	Thus
+	\begin{equation}
+\begin{aligned}
+		f(\theta \vec{n} \cdot \vec{\sigma}) &= f(\theta) \kb{\lambda_1} + f(- \theta) \kb{\lambda_{-1}}\\
+		&= \left( \frac{f(\theta) + f(-\theta)}{2} + \frac{f(\theta) - f(-\theta)}{2}  \right) \kb{\lambda_1} + \left( \frac{f(\theta) + f(-\theta)}{2} - \frac{f(\theta) - f(-\theta)}{2}  \right)\kb{\lambda_{-1}}\\
+		&= \frac{f(\theta) + f(-\theta)}{2} \left( \kb{\lambda_1} + \kb{\lambda_{-1}} \right) +  \frac{f(\theta) - f(-\theta)}{2} \left(\kb{\lambda_1} - \kb{\lambda_{-1}} \right)\\
+		&= \frac{f(\theta) + f(-\theta)}{2} I + \frac{f(\theta) - f(-\theta)}{2} \vec{n} \cdot \vec{\sigma}
+	\end{aligned}
+\end{equation}
+	
+	\Textbf{Problem 2.2}
+	Unsolved
+	
+	\Textbf{Problem 2.3}
+	Unsolved
+	
+\end{document}
