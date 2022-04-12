@@ -1,6 +1,6 @@
 # Solution of quantum books
 
-In recent years, there have been many exciting advances in the quantum computer, and its quantum superiority has already been demonstrated in some problems. Now is the best time to learn about quantum computers so that we can be prepared before it becomes the Next Big Thing and seize the opportunity. For beginners, I highly recommend the following two books, which are detailed and comprehensive.
+In recent years, there have been many exciting advances in the quantum computer, and its quantum supremacy has already been demonstrated in some problems. Now is the best time to learn about quantum computers so that we can be prepared before it becomes the Next Big Thing and seize the opportunity. For beginners, I highly recommend the following two books, which are detailed and comprehensive.
 
 1. [Quantum Computation and Quantum Information (QCQI) - Michael A. Nielsen & Isaac L. Chuang](./books/QCQI.pdf) (Newer, the best option)
 2. [Quantum Information Theory (QIT) - MARK M. WILDE](./books/QIT.pdf)
