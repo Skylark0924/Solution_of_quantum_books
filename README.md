@@ -9,27 +9,27 @@ This repository serves as a gathering of **unofficial** solutions to the exercis
 
 ## Solutions
 ### QCQI
-1. [Chapter 1](./QCQI/chapter1)
+1. Chapter 1
 2. [Chapter 2](./QCQI/chapter2)
-3. [Chapter 3](./QCQI/chapter3)
-4. [Chapter 4](./QCQI/chapter4)
-5. [Chapter 5](./QCQI/chapter5)
-6. [Chapter 6](./QCQI/chapter6)
-7. [Chapter 7](./QCQI/chapter7)
-8. [Chapter 8](./QCQI/chapter8)
-9. [Chapter 9](./QCQI/chapter9)
-10. [Chapter 10](./QCQI/chapter10)
+3. Chapter 3
+4. Chapter 4
+5. Chapter 5
+6. Chapter 6
+7. Chapter 7
+8. Chapter 8
+9. Chapter 9
+10. Chapter 10
 
 ### QIT
-1. [Chapter 2](./QIT/chapter2)
-2. [Chapter 3](./QIT/chapter3)
-3. [Chapter 4](./QIT/chapter4)
-4. [Chapter 5](./QIT/chapter5)
-5. [Chapter 6](./QIT/chapter6)
-6. [Chapter 7](./QIT/chapter7)
-7. [Chapter 8](./QIT/chapter8)
-8. [Chapter 9](./QIT/chapter9)
-9. [Chapter 10](./QIT/chapter10)
+1. Chapter 2
+2. Chapter 3
+3. Chapter 4
+4. Chapter 5
+5. Chapter 6
+6. Chapter 7
+7. Chapter 8
+8. Chapter 9
+9. Chapter 10
 
 
 ## Reference
